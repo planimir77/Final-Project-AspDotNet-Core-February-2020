@@ -24,6 +24,16 @@
         {
         }
 
+        public DbSet<Address> Addresses { get; set; }
+
+        public DbSet<Company> Companies { get; set; }
+
+        public DbSet<Employee> Employees { get; set; }
+
+        public DbSet<Order> Orders { get; set; }
+
+        public DbSet<Section> Sections { get; set; }
+
         public DbSet<Setting> Settings { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
