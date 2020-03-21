@@ -29,6 +29,7 @@
                               new SettingsSeeder(),
                               new CompaniesSeeder(),
                               new SectionsSeeder(),
+                              new FirstAdminSeeder(),
                           };
 
             foreach (var seeder in seeders)
