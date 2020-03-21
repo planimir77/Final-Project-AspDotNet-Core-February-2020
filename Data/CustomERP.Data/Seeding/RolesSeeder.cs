@@ -5,8 +5,7 @@
     using System.Threading.Tasks;
 
     using CustomERP.Common;
-    using Models;
-
+    using CustomERP.Data.Models;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
 
