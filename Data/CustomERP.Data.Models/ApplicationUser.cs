@@ -19,6 +19,10 @@ namespace CustomERP.Data.Models
         }
 
         // Audit info
+        public string CreatorUserId { get; set; }
+
+        public string ModifierUserId { get; set; }
+
         public DateTime CreatedOn { get; set; }
 
         public DateTime? ModifiedOn { get; set; }
@@ -27,6 +31,12 @@ namespace CustomERP.Data.Models
         public bool IsDeleted { get; set; }
 
         public DateTime? DeletedOn { get; set; }
+
+        public string DeletedFrom { get; set; }
+
+        public string EmployeeId { get; set; }
+
+        public virtual Employee Employee { get; set; }
 
         public virtual ICollection<IdentityUserRole<string>> Roles { get; set; }
 
