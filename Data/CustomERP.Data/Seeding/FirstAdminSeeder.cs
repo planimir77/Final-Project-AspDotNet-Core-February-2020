@@ -38,7 +38,7 @@ namespace CustomERP.Data.Seeding
 
         private async Task SeedSetUserRoleAsync(UserManager<ApplicationUser> userManager, ApplicationUser admin)
         {
-            var result = await userManager.AddToRoleAsync(admin, GlobalConstants.AdministratorRoleName);
+            var result = await userManager.AddToRoleAsync(admin, GlobalConstants.RoleName.Administrator);
 
             ResultSucceeded(result);
         }
