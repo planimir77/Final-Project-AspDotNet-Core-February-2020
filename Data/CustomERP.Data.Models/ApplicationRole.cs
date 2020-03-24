@@ -20,6 +20,10 @@ namespace CustomERP.Data.Models
             this.Id = Guid.NewGuid().ToString();
         }
 
+        public string CreatorUserId { get; set; }
+
+        public string ModifierUserId { get; set; }
+
         public DateTime CreatedOn { get; set; }
 
         public DateTime? ModifiedOn { get; set; }
@@ -27,5 +31,7 @@ namespace CustomERP.Data.Models
         public bool IsDeleted { get; set; }
 
         public DateTime? DeletedOn { get; set; }
+
+        public string DeletedFrom { get; set; }
     }
 }

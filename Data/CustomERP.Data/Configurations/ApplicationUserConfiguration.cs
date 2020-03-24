@@ -28,6 +28,25 @@
                 .HasForeignKey(e => e.UserId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Restrict);
+
+            appUser
+                .Property(e => e.FullName)
+                .IsRequired()
+                .HasMaxLength(100)
+                .IsUnicode();
+
+            appUser
+                .Property(e => e.Position)
+                .IsRequired()
+                .HasMaxLength(100)
+                .IsUnicode();
+
+            appUser
+                .HasOne(e => e.ApplicationUserManager)
+                .WithMany(e => e.ApplicationUserManagers)
+                .HasForeignKey(e => e.ManagerId)
+                .IsRequired(false)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

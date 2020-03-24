@@ -12,7 +12,7 @@ namespace CustomERP.Data.Models
         public Company()
         {
             this.Id = Guid.NewGuid().ToString();
-            this.Employees = new HashSet<Employee>();
+            this.ApplicationUsers = new HashSet<ApplicationUser>();
         }
 
         [Required]
@@ -22,6 +22,6 @@ namespace CustomERP.Data.Models
 
         public virtual Address CompanyAddress { get; set; }
 
-        public virtual ICollection<Employee> Employees { get; set; }
+        public virtual ICollection<ApplicationUser> ApplicationUsers { get; set; }
     }
 }

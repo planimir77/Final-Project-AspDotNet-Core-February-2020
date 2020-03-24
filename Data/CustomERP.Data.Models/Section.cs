@@ -9,7 +9,7 @@ namespace CustomERP.Data.Models
     {
         public Section()
         {
-            this.Employees = new HashSet<Employee>();
+            this.ApplicationUsers = new HashSet<ApplicationUser>();
         }
 
         public string Name { get; set; }
@@ -22,7 +22,7 @@ namespace CustomERP.Data.Models
 
         public virtual Section SectionParent { get; set; }
 
-        public virtual ICollection<Employee> Employees { get; set; }
+        public virtual ICollection<ApplicationUser> ApplicationUsers { get; set; }
 
         public virtual ICollection<Section> SectionParents { get; set; }
     }

@@ -1,4 +1,7 @@
 ﻿// ReSharper disable VirtualMemberCallInConstructor
+
+using System.ComponentModel.DataAnnotations;
+
 namespace CustomERP.Data.Models
 {
     using System;
@@ -16,7 +19,16 @@ namespace CustomERP.Data.Models
             this.Roles = new HashSet<IdentityUserRole<string>>();
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
+            this.ApplicationUserManagers = new HashSet<ApplicationUser>();
         }
+
+        [MinLength(8)]
+        [RegularExpression(
+            "^([A-Z][a-z]+\\s[A-Z][a-z]+\\s[A-Z][a-z]+|[А-Я][а-я]+\\s[А-Я][а-я]+\\s[А-Я][а-я]+)")]
+        public string FullName { get; set; }
+
+        [Required]
+        public string Position { get; set; }
 
         // Audit info
         public string CreatorUserId { get; set; }
@@ -34,9 +46,25 @@ namespace CustomERP.Data.Models
 
         public string DeletedFrom { get; set; }
 
-        public string EmployeeId { get; set; }
+        // Relations
+        public int? AddressId { get; set; }
 
-        public virtual Employee Employee { get; set; }
+        public virtual Address UserAddress { get; set; }
+
+        public int? SectionId { get; set; }
+
+        public virtual Section Section { get; set; }
+
+#nullable enable
+        public string? CompanyId { get; set; }
+
+        public virtual Company Company { get; set; }
+
+        public string? ManagerId { get; set; }
+
+        public virtual ApplicationUser ApplicationUserManager { get; set; }
+
+        public virtual ICollection<ApplicationUser> ApplicationUserManagers { get; set; }
 
         public virtual ICollection<IdentityUserRole<string>> Roles { get; set; }
 

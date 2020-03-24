@@ -28,8 +28,6 @@
 
         public DbSet<Company> Companies { get; set; }
 
-        public DbSet<Employee> Employees { get; set; }
-
         public DbSet<Order> Orders { get; set; }
 
         public DbSet<Section> Sections { get; set; }
@@ -92,7 +90,13 @@
 
         // Applies configurations
         private void ConfigureUserIdentityRelations(ModelBuilder builder)
-             => builder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
+		{
+            builder.ApplyConfiguration(new ApplicationUserConfiguration());
+            builder.ApplyConfiguration(new AddressConfiguration());
+            builder.ApplyConfiguration(new CompanyConfiguration());
+            builder.ApplyConfiguration(new OrderConfiguration());
+            builder.ApplyConfiguration(new SectionConfiguration());
+        }
 
         private void ApplyAuditInfoRules()
         {

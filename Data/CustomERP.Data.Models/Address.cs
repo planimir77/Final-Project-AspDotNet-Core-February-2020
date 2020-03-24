@@ -9,7 +9,7 @@ namespace CustomERP.Data.Models
     {
         public Address()
         {
-            this.Employees = new HashSet<Employee>();
+            this.ApplicationUsers = new HashSet<ApplicationUser>();
             this.Companies = new HashSet<Company>();
         }
 
@@ -29,7 +29,7 @@ namespace CustomERP.Data.Models
 
         public string Note { get; set; }
 
-        public virtual ICollection<Employee> Employees { get; set; }
+        public virtual ICollection<ApplicationUser> ApplicationUsers { get; set; }
 
         public virtual ICollection<Company> Companies { get; set; }
     }
