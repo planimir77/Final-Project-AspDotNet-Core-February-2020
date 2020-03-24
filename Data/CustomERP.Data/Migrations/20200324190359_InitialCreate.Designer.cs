@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CustomERP.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200321202750_RefactoringTables")]
-    partial class RefactoringTables
+    [Migration("20200324190359_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,40 +29,67 @@ namespace CustomERP.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50)
+                        .IsUnicode(true);
 
                     b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50)
+                        .IsUnicode(true);
+
+                    b.Property<string>("CreatedFrom")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("DeletedFrom")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("Floor")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasMaxLength(50);
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<string>("ModifiedFrom")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Note")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(300)")
+                        .HasMaxLength(300)
+                        .IsUnicode(true);
 
                     b.Property<string>("PostCode")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
 
                     b.Property<string>("Room")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(6)")
+                        .HasMaxLength(6)
+                        .IsUnicode(true);
 
                     b.Property<string>("Street")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50)
+                        .IsUnicode(true);
 
                     b.Property<string>("StreetNumber")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(4)")
+                        .HasMaxLength(4)
+                        .IsUnicode(true);
 
                     b.HasKey("Id");
 
@@ -80,14 +107,23 @@ namespace CustomERP.Data.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("CreatedFrom")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("DeletedFrom")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<string>("ModifiedFrom")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
@@ -120,18 +156,29 @@ namespace CustomERP.Data.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<int?>("AddressId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CompanyId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("CreatedFrom")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(40)")
+                        .HasMaxLength(40)
+                        .IsUnicode(true);
+
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CreatorUserId")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("DeletedFrom")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(40)")
+                        .HasMaxLength(40)
+                        .IsUnicode(true);
 
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
@@ -143,8 +190,11 @@ namespace CustomERP.Data.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<string>("EmployeeId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100)
+                        .IsUnicode(true);
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -155,11 +205,16 @@ namespace CustomERP.Data.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
 
+                    b.Property<string>("ManagerId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ModifiedFrom")
+                        .HasColumnType("nvarchar(40)")
+                        .HasMaxLength(40)
+                        .IsUnicode(true);
+
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("ModifierUserId")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedEmail")
                         .HasColumnType("nvarchar(256)")
@@ -178,6 +233,15 @@ namespace CustomERP.Data.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Position")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100)
+                        .IsUnicode(true);
+
+                    b.Property<int?>("SectionId")
+                        .HasColumnType("int");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -190,11 +254,13 @@ namespace CustomERP.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EmployeeId")
-                        .IsUnique()
-                        .HasFilter("[EmployeeId] IS NOT NULL");
+                    b.HasIndex("AddressId");
+
+                    b.HasIndex("CompanyId");
 
                     b.HasIndex("IsDeleted");
+
+                    b.HasIndex("ManagerId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
@@ -203,6 +269,8 @@ namespace CustomERP.Data.Migrations
                         .IsUnique()
                         .HasName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.HasIndex("SectionId");
 
                     b.ToTable("AspNetUsers");
                 });
@@ -215,8 +283,14 @@ namespace CustomERP.Data.Migrations
                     b.Property<int?>("AddressId")
                         .HasColumnType("int");
 
+                    b.Property<string>("CreatedFrom")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("DeletedFrom")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
@@ -224,12 +298,17 @@ namespace CustomERP.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<string>("ModifiedFrom")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50)
+                        .IsUnicode(true);
 
                     b.HasKey("Id");
 
@@ -238,65 +317,6 @@ namespace CustomERP.Data.Migrations
                     b.HasIndex("IsDeleted");
 
                     b.ToTable("Companies");
-                });
-
-            modelBuilder.Entity("CustomERP.Data.Models.Employee", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int?>("AddressId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CompanyId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("EmployeeManagerId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("FullName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("HireDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Position")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("ReleaseDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("SectionId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AddressId");
-
-                    b.HasIndex("CompanyId");
-
-                    b.HasIndex("EmployeeManagerId");
-
-                    b.HasIndex("IsDeleted");
-
-                    b.HasIndex("SectionId");
-
-                    b.ToTable("Employees");
                 });
 
             modelBuilder.Entity("CustomERP.Data.Models.Order", b =>
@@ -310,38 +330,59 @@ namespace CustomERP.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("ContentWeight")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("CreatedFrom")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Customer")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50)
+                        .IsUnicode(true);
+
+                    b.Property<string>("DeletedFrom")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<string>("ModifiedFrom")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Note")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200)
+                        .IsUnicode(true);
 
                     b.Property<int>("Progress")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasMaxLength(50);
 
                     b.Property<int>("Quantity")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasMaxLength(1000);
 
                     b.Property<string>("Recipe")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50)
+                        .IsUnicode(true);
 
                     b.HasKey("Id");
 
@@ -357,8 +398,14 @@ namespace CustomERP.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("CreatedFrom")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("DeletedFrom")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
@@ -366,11 +413,17 @@ namespace CustomERP.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<string>("ModifiedFrom")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50)
+                        .IsUnicode(true);
 
                     b.Property<int?>("OrderId")
                         .HasColumnType("int");
@@ -396,14 +449,23 @@ namespace CustomERP.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("CreatedFrom")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("DeletedFrom")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<string>("ModifiedFrom")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
@@ -527,46 +589,46 @@ namespace CustomERP.Data.Migrations
 
             modelBuilder.Entity("CustomERP.Data.Models.ApplicationUser", b =>
                 {
-                    b.HasOne("CustomERP.Data.Models.Employee", "Employee")
-                        .WithOne("UserAccount")
-                        .HasForeignKey("CustomERP.Data.Models.ApplicationUser", "EmployeeId");
+                    b.HasOne("CustomERP.Data.Models.Address", "UserAddress")
+                        .WithMany("ApplicationUsers")
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("CustomERP.Data.Models.Company", "Company")
+                        .WithMany("ApplicationUsers")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("CustomERP.Data.Models.ApplicationUser", "ApplicationUserManager")
+                        .WithMany("ApplicationUserManagers")
+                        .HasForeignKey("ManagerId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("CustomERP.Data.Models.Section", "Section")
+                        .WithMany("ApplicationUsers")
+                        .HasForeignKey("SectionId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("CustomERP.Data.Models.Company", b =>
                 {
                     b.HasOne("CustomERP.Data.Models.Address", "CompanyAddress")
                         .WithMany("Companies")
-                        .HasForeignKey("AddressId");
-                });
-
-            modelBuilder.Entity("CustomERP.Data.Models.Employee", b =>
-                {
-                    b.HasOne("CustomERP.Data.Models.Address", "EmployeeAddress")
-                        .WithMany("Employees")
-                        .HasForeignKey("AddressId");
-
-                    b.HasOne("CustomERP.Data.Models.Company", "Company")
-                        .WithMany("Employees")
-                        .HasForeignKey("CompanyId");
-
-                    b.HasOne("CustomERP.Data.Models.Employee", "EmployeeManager")
-                        .WithMany("Managers")
-                        .HasForeignKey("EmployeeManagerId");
-
-                    b.HasOne("CustomERP.Data.Models.Section", "Section")
-                        .WithMany("Employees")
-                        .HasForeignKey("SectionId");
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("CustomERP.Data.Models.Section", b =>
                 {
                     b.HasOne("CustomERP.Data.Models.Order", "Order")
                         .WithMany("Sections")
-                        .HasForeignKey("OrderId");
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("CustomERP.Data.Models.Section", "SectionParent")
                         .WithMany("SectionParents")
-                        .HasForeignKey("SectionParentId");
+                        .HasForeignKey("SectionParentId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

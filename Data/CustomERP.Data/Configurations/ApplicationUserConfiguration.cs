@@ -42,6 +42,39 @@
                 .IsUnicode();
 
             appUser
+                .Property(e => e.CreatedFrom)
+                .IsRequired()
+                .HasMaxLength(40)
+                .IsUnicode();
+            appUser
+                .Property(e => e.ModifiedFrom)
+                .IsRequired(false)
+                .HasMaxLength(40)
+                .IsUnicode();
+            appUser
+                .Property(e => e.DeletedFrom)
+                .IsRequired(false)
+                .HasMaxLength(40)
+                .IsUnicode();
+            appUser
+                .HasOne(e => e.UserAddress)
+                .WithMany(e => e.ApplicationUsers)
+                .HasForeignKey(e => e.AddressId )
+                .IsRequired(false)
+                .OnDelete(DeleteBehavior.Restrict);
+            appUser
+                .HasOne(e => e.Section)
+                .WithMany(e => e.ApplicationUsers)
+                .HasForeignKey(e => e.SectionId )
+                .IsRequired(false)
+                .OnDelete(DeleteBehavior.Restrict);
+            appUser
+                .HasOne(e => e.Company)
+                .WithMany(e => e.ApplicationUsers)
+                .HasForeignKey(e => e.CompanyId )
+                .IsRequired(false)
+                .OnDelete(DeleteBehavior.Restrict);
+            appUser
                 .HasOne(e => e.ApplicationUserManager)
                 .WithMany(e => e.ApplicationUserManagers)
                 .HasForeignKey(e => e.ManagerId)

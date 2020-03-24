@@ -11,8 +11,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20191224074400_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191224074400_InitialCreate.Designer.cs" />
     <Compile Remove="Migrations\20200315154847_AddressesCompaniesEmployeesOrdersSections.cs" />
     <Compile Remove="Migrations\20200315154847_AddressesCompaniesEmployeesOrdersSections.Designer.cs" />
+    <Compile Remove="Migrations\20200321202750_RefactoringTables.cs" />
+    <Compile Remove="Migrations\20200321202750_RefactoringTables.Designer.cs" />
+    <Compile Remove="Migrations\20200324141714_InitialCreate.cs" />
+    <Compile Remove="Migrations\20200324141714_InitialCreate.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,7 +1,9 @@
 ﻿// ReSharper disable VirtualMemberCallInConstructor
+
 namespace CustomERP.Data.Models
 {
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     using CustomERP.Data.Common.Models;
 
@@ -13,15 +15,19 @@ namespace CustomERP.Data.Models
             this.Companies = new HashSet<Company>();
         }
 
+        [Required]
         public string Country { get; set; }
 
+        [Required]
         public string City { get; set; }
 
-        public string PostCode { get; set; }
-
+        [Required]
         public string Street { get; set; }
 
+        [Required]
         public string StreetNumber { get; set; }
+
+        public string PostCode { get; set; }
 
         public int? Floor { get; set; }
 

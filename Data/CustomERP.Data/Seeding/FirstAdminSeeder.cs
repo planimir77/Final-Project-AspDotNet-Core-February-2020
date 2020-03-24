@@ -49,7 +49,9 @@ namespace CustomERP.Data.Seeding
             {
                 UserName = "admin@erp.com",
                 Email = "admin@erp.com",
-                CreatorUserId = "FirstUser",
+                CreatedFrom = "System",
+                FullName = "First Created Owner",
+                Position = "Owner",
             };
 
             var result = await userManager.CreateAsync(admin, "123456");

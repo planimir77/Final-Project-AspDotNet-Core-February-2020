@@ -11,5 +11,10 @@
         public DateTime CreatedOn { get; set; }
 
         public DateTime? ModifiedOn { get; set; }
+
+        public string CreatedFrom { get; set; }
+
+#nullable enable
+        public string? ModifiedFrom { get; set; }
     }
 }

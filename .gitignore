@@ -357,3 +357,5 @@ MigrationBackup/
 appsettings.Production.json
 *.min.css
 *.min.js
+/Data/CustomERP.Data/Migrations/20200324141714_InitialCreate.Designer.cs
+/Data/CustomERP.Data/Migrations/20200324141714_InitialCreate.cs

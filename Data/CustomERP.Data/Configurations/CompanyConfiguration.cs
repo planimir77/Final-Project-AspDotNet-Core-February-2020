@@ -14,6 +14,13 @@
                 .IsRequired()
                 .HasMaxLength(50);
 
+            builder
+                .HasOne(e => e.CompanyAddress)
+                .WithMany(e => e.Companies)
+                .HasForeignKey(e => e.AddressId )
+                .IsRequired(false)
+                .OnDelete(DeleteBehavior.Restrict);
+
             builder.HasMany(e => e.ApplicationUsers)
                 .WithOne(e => e.Company)
                 .HasForeignKey(e => e.CompanyId)

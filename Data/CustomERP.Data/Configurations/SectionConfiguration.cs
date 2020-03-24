@@ -13,18 +13,23 @@
                 .IsUnicode()
                 .IsRequired()
                 .HasMaxLength(50);
-
+            builder
+                .HasOne(e => e.Order)
+                .WithMany(e => e.Sections)
+                .HasForeignKey(e => e.OrderId )
+                .IsRequired(false)
+                .OnDelete(DeleteBehavior.Restrict);
             builder
                 .HasMany(e => e.ApplicationUsers)
                 .WithOne(e => e.Section)
                 .HasForeignKey(e => e.SectionId)
                 .IsRequired(false)
                 .OnDelete(DeleteBehavior.Restrict);
-
             builder
                 .HasOne(e => e.SectionParent)
                 .WithMany(e => e.SectionParents)
-                .HasForeignKey(e => e.SectionParentId);
+                .HasForeignKey(e => e.SectionParentId)
+                .OnDelete(DeleteBehavior.Restrict);;
         }
     }
 }

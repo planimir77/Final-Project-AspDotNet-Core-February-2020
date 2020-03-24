@@ -7,5 +7,8 @@
         bool IsDeleted { get; set; }
 
         DateTime? DeletedOn { get; set; }
+
+#nullable enable
+        string? DeletedFrom { get; set; }
     }
 }

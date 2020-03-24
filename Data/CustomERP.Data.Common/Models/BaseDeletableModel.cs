@@ -7,5 +7,8 @@
         public bool IsDeleted { get; set; }
 
         public DateTime? DeletedOn { get; set; }
+
+#nullable enable
+        public string? DeletedFrom { get; set; }
     }
 }

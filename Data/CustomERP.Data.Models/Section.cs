@@ -1,7 +1,9 @@
 ﻿// ReSharper disable VirtualMemberCallInConstructor
+
 namespace CustomERP.Data.Models
 {
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     using CustomERP.Data.Common.Models;
 
@@ -12,6 +14,7 @@ namespace CustomERP.Data.Models
             this.ApplicationUsers = new HashSet<ApplicationUser>();
         }
 
+        [Required]
         public string Name { get; set; }
 
         public int? OrderId { get; set; }

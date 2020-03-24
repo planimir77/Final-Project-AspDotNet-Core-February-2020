@@ -1,4 +1,6 @@
-﻿namespace CustomERP.Data
+﻿using CustomERP.Data.Configurations;
+
+namespace CustomERP.Data
 {
     using System;
     using System.Linq;
@@ -90,7 +92,7 @@
 
         // Applies configurations
         private void ConfigureUserIdentityRelations(ModelBuilder builder)
-		{
+        {
             builder.ApplyConfiguration(new ApplicationUserConfiguration());
             builder.ApplyConfiguration(new AddressConfiguration());
             builder.ApplyConfiguration(new CompanyConfiguration());
@@ -112,6 +114,7 @@
                 if (entry.State == EntityState.Added && entity.CreatedOn == default)
                 {
                     entity.CreatedOn = DateTime.UtcNow;
+                    entity.CreatedFrom = "TODO";
                 }
                 else
                 {
