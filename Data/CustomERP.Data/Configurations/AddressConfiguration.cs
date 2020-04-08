@@ -48,7 +48,7 @@
                 .HasMaxLength(6);
 
             builder
-                .Property(e => e.Note)
+                .Property(e => e.Description)
                 .IsUnicode()
                 .IsRequired(false)
                 .HasMaxLength(300);

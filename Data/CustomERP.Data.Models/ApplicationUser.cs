@@ -20,6 +20,7 @@ namespace CustomERP.Data.Models
             this.ApplicationUserManagers = new HashSet<ApplicationUser>();
         }
 
+        [Required]
         [MinLength(8)]
         [RegularExpression(
             "^([A-Z][a-z]+\\s[A-Z][a-z]+\\s[A-Z][a-z]+|[А-Я][а-я]+\\s[А-Я][а-я]+\\s[А-Я][а-я]+)")]
@@ -27,6 +28,10 @@ namespace CustomERP.Data.Models
 
         [Required]
         public string Position { get; set; }
+
+        public int? ShiftId { get; set; }
+
+        public virtual Shift Shift { get; set; }
 
         // Audit info
         public string CreatedFrom { get; set; }

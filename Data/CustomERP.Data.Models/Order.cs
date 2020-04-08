@@ -30,7 +30,7 @@ namespace CustomERP.Data.Models
 
         public DateTime? CompletedOn { get; set; }
 
-        public string Note { get; set; }
+        public string Description { get; set; }
 
         public virtual ICollection<Section> Sections { get; set; }
     }

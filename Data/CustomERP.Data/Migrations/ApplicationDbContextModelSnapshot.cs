@@ -63,7 +63,7 @@ namespace CustomERP.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Note")
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(300)")
                         .HasMaxLength(300)
                         .IsUnicode(true);
@@ -363,7 +363,7 @@ namespace CustomERP.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Note")
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(200)")
                         .HasMaxLength(200)
                         .IsUnicode(true);

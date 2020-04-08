@@ -33,7 +33,7 @@ namespace CustomERP.Data.Models
 
         public string Room { get; set; }
 
-        public string Note { get; set; }
+        public string Description { get; set; }
 
         public virtual ICollection<ApplicationUser> ApplicationUsers { get; set; }
 

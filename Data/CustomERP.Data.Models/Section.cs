@@ -21,6 +21,11 @@ namespace CustomERP.Data.Models
 
         public virtual Order Order { get; set; }
 
+        [Required]
+        public int DepartmentId { get; set; }
+
+        public Department Department { get; set; }
+
         public int? SectionParentId { get; set; }
 
         public virtual Section SectionParent { get; set; }
