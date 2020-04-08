@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CustomERP.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200408094729_AddDepartmentScheduleShiftShiftDay")]
+    [Migration("20200408115450_AddDepartmentScheduleShiftShiftDay")]
     partial class AddDepartmentScheduleShiftShiftDay
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -108,13 +108,18 @@ namespace CustomERP.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CreatedFrom")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50)
+                        .IsUnicode(true);
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("DeletedFrom")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50)
+                        .IsUnicode(true);
 
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
@@ -123,7 +128,9 @@ namespace CustomERP.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("ModifiedFrom")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50)
+                        .IsUnicode(true);
 
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
@@ -360,7 +367,9 @@ namespace CustomERP.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50)
+                        .IsUnicode(true);
 
                     b.HasKey("Id");
 
@@ -620,7 +629,9 @@ namespace CustomERP.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20)
+                        .IsUnicode(true);
 
                     b.Property<int>("ScheduleId")
                         .HasColumnType("int");
@@ -628,6 +639,9 @@ namespace CustomERP.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("IsDeleted");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.HasIndex("ScheduleId");
 
@@ -657,10 +671,12 @@ namespace CustomERP.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<TimeSpan>("Duration")
-                        .HasColumnType("time");
+                        .HasColumnType("time")
+                        .HasMaxLength(12);
 
                     b.Property<TimeSpan>("IncludingRest")
-                        .HasColumnType("time");
+                        .HasColumnType("time")
+                        .HasMaxLength(12);
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -831,8 +847,7 @@ namespace CustomERP.Data.Migrations
                     b.HasOne("CustomERP.Data.Models.Department", "Department")
                         .WithMany("Sections")
                         .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("CustomERP.Data.Models.Order", "Order")
                         .WithMany("Sections")

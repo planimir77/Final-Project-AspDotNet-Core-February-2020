@@ -45,6 +45,33 @@ namespace CustomERP.Data.Migrations
                 table: "AspNetUsers",
                 nullable: true);
 
+            migrationBuilder.AlterColumn<string>(
+                name: "ModifiedFrom",
+                table: "AspNetRoles",
+                maxLength: 50,
+                nullable: true,
+                oldClrType: typeof(string),
+                oldType: "nvarchar(max)",
+                oldNullable: true);
+
+            migrationBuilder.AlterColumn<string>(
+                name: "DeletedFrom",
+                table: "AspNetRoles",
+                maxLength: 50,
+                nullable: true,
+                oldClrType: typeof(string),
+                oldType: "nvarchar(max)",
+                oldNullable: true);
+
+            migrationBuilder.AlterColumn<string>(
+                name: "CreatedFrom",
+                table: "AspNetRoles",
+                maxLength: 50,
+                nullable: false,
+                oldClrType: typeof(string),
+                oldType: "nvarchar(max)",
+                oldNullable: true);
+
             migrationBuilder.CreateTable(
                 name: "Departments",
                 columns: table => new
@@ -58,7 +85,7 @@ namespace CustomERP.Data.Migrations
                     IsDeleted = table.Column<bool>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     DeletedFrom = table.Column<string>(nullable: true),
-                    Name = table.Column<string>(nullable: false)
+                    Name = table.Column<string>(maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -101,8 +128,8 @@ namespace CustomERP.Data.Migrations
                     DeletedFrom = table.Column<string>(nullable: true),
                     WorkingMode = table.Column<int>(nullable: false),
                     Begins = table.Column<DateTime>(nullable: false),
-                    Duration = table.Column<TimeSpan>(nullable: false),
-                    IncludingRest = table.Column<TimeSpan>(nullable: false),
+                    Duration = table.Column<TimeSpan>(maxLength: 12, nullable: false),
+                    IncludingRest = table.Column<TimeSpan>(maxLength: 12, nullable: false),
                     ScheduleId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -129,7 +156,7 @@ namespace CustomERP.Data.Migrations
                     IsDeleted = table.Column<bool>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     DeletedFrom = table.Column<string>(nullable: true),
-                    Name = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(maxLength: 20, nullable: false),
                     ScheduleId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -195,6 +222,12 @@ namespace CustomERP.Data.Migrations
                 name: "IX_Shifts_IsDeleted",
                 table: "Shifts",
                 column: "IsDeleted");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Shifts_Name",
+                table: "Shifts",
+                column: "Name",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Shifts_ScheduleId",
@@ -293,6 +326,32 @@ namespace CustomERP.Data.Migrations
                 nullable: true,
                 oldClrType: typeof(string),
                 oldMaxLength: 40);
+
+            migrationBuilder.AlterColumn<string>(
+                name: "ModifiedFrom",
+                table: "AspNetRoles",
+                type: "nvarchar(max)",
+                nullable: true,
+                oldClrType: typeof(string),
+                oldMaxLength: 50,
+                oldNullable: true);
+
+            migrationBuilder.AlterColumn<string>(
+                name: "DeletedFrom",
+                table: "AspNetRoles",
+                type: "nvarchar(max)",
+                nullable: true,
+                oldClrType: typeof(string),
+                oldMaxLength: 50,
+                oldNullable: true);
+
+            migrationBuilder.AlterColumn<string>(
+                name: "CreatedFrom",
+                table: "AspNetRoles",
+                type: "nvarchar(max)",
+                nullable: true,
+                oldClrType: typeof(string),
+                oldMaxLength: 50);
         }
     }
 }

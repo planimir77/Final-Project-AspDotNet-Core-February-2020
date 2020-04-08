@@ -1,11 +1,10 @@
-﻿using CustomERP.Common;
-
-namespace CustomERP.Data.Seeding
+﻿namespace CustomERP.Data.Seeding
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
 
+    using CustomERP.Common;
     using CustomERP.Data.Models;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;

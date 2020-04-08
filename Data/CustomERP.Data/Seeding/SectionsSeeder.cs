@@ -1,8 +1,9 @@
-﻿namespace CustomERP.Data.Seeding
+﻿using System.Linq;
+
+namespace CustomERP.Data.Seeding
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
 
     using CustomERP.Data.Models;
@@ -24,6 +25,8 @@
                 await dbContext.Sections.AddAsync(new Section
                 {
                     Name = section,
+                    CreatedFrom = "System",
+                    Department = dbContext.Departments.FirstOrDefault(department => department.Name == "Production"),
                 });
             }
         }

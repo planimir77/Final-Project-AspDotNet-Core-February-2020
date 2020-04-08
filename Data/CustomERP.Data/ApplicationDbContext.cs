@@ -100,10 +100,15 @@
         private void ConfigureUserIdentityRelations(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new ApplicationUserConfiguration());
+            builder.ApplyConfiguration(new ApplicationRoleConfiguration());
             builder.ApplyConfiguration(new AddressConfiguration());
             builder.ApplyConfiguration(new CompanyConfiguration());
             builder.ApplyConfiguration(new OrderConfiguration());
             builder.ApplyConfiguration(new SectionConfiguration());
+            builder.ApplyConfiguration(new DepartmentConfiguration());
+            builder.ApplyConfiguration(new ScheduleConfiguration());
+            builder.ApplyConfiguration(new ShiftConfiguration());
+            builder.ApplyConfiguration(new ShiftDayConfiguration());
         }
 
         private void ApplyAuditInfoRules()

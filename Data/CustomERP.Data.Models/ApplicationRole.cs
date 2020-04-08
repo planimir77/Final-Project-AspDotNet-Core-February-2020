@@ -3,9 +3,9 @@
 namespace CustomERP.Data.Models
 {
     using System;
+    using System.ComponentModel.DataAnnotations;
 
     using CustomERP.Data.Common.Models;
-
     using Microsoft.AspNetCore.Identity;
 
     public class ApplicationRole : IdentityRole, IAuditInfo, IDeletableEntity
@@ -25,6 +25,7 @@ namespace CustomERP.Data.Models
 
         public DateTime? ModifiedOn { get; set; }
 
+        [Required]
         public string CreatedFrom { get; set; }
 
         public bool IsDeleted { get; set; }
