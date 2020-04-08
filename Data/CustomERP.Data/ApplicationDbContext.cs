@@ -30,11 +30,19 @@ namespace CustomERP.Data
 
         public DbSet<Company> Companies { get; set; }
 
+        public DbSet<Department> Departments { get; set; }
+
         public DbSet<Order> Orders { get; set; }
+
+        public DbSet<Schedule> Schedules { get; set; }
 
         public DbSet<Section> Sections { get; set; }
 
         public DbSet<Setting> Settings { get; set; }
+
+        public DbSet<Shift> Shifts { get; set; }
+
+        public DbSet<ShiftDay> ShiftDays { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 
