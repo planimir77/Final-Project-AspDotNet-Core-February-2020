@@ -1,9 +1,5 @@
 ﻿namespace CustomERP.Data.Configurations
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
-
     using CustomERP.Data.Models;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -18,6 +14,11 @@
                 .IsRequired()
                 .HasMaxLength(50);
             builder
+                .Property(e => e.Description)
+                .IsUnicode()
+                .IsRequired(false)
+                .HasMaxLength(200);
+            builder
                 .Property(e => e.Recipe)
                 .IsUnicode()
                 .IsRequired()
@@ -28,7 +29,7 @@
             builder
                 .Property(e => e.ContentWeight)
                 .IsRequired()
-                .HasMaxLength(50);
+                .HasMaxLength(2000);
             builder
                 .Property(e => e.Progress)
                 .IsRequired()

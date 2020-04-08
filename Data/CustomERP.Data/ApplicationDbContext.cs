@@ -1,6 +1,4 @@
-﻿using CustomERP.Data.Configurations;
-
-namespace CustomERP.Data
+﻿namespace CustomERP.Data
 {
     using System;
     using System.Linq;
@@ -9,8 +7,8 @@ namespace CustomERP.Data
     using System.Threading.Tasks;
 
     using CustomERP.Data.Common.Models;
+    using CustomERP.Data.Configurations;
     using CustomERP.Data.Models;
-
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
 
