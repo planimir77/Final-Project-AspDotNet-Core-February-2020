@@ -5,33 +5,44 @@
 
     using CustomERP.Data.Common.Repositories;
     using CustomERP.Data.Models;
+    using CustomERP.Services.Data;
     using CustomERP.Web.ViewModels.Administration.Register;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
-    public class RegisterController : AdministrationController
+    public class AccountController : AdministrationController
     {
-        private readonly IDeletableEntityRepository<ApplicationUser> repository;
+        private readonly IApplicationUserService userService;
         private readonly SignInManager<ApplicationUser> signInManager;
 
-        public RegisterController(IDeletableEntityRepository<ApplicationUser> repository, SignInManager<ApplicationUser> signInManager)
+        public AccountController(IApplicationUserService userService, SignInManager<ApplicationUser> signInManager)
         {
-            this.repository = repository;
+            this.userService = userService;
             this.signInManager = signInManager;
         }
 
+        // GET: /Account/Index
+        [HttpGet]
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        // GET: /Account/Register
+        public IActionResult Register()
         {
             var viewModel = new UserInputViewModel();
             return this.View(viewModel);
         }
 
-        public async Task<IActionResult> CreateUser(UserInputViewModel viewModel)
+        // POST:  /Account/Register
+        public async Task<IActionResult> Register(UserInputViewModel viewModel)
         {
-            var user = this.repository.All().FirstOrDefault(u => u.FullName == viewModel.FullName);
-            if (user == null)
+            var inputViewModels = viewModel;//this.entityService.GetAll<UserInputViewModel>();
+            if (inputViewModels == null)
             {
-                user = new ApplicationUser
+
+                var user = new ApplicationUser
                 {
                     FullName = viewModel.FullName,
                     Position = viewModel.Position,
@@ -39,8 +50,8 @@
                 };
                 var y = this.User.Identities;
 
-                await this.repository.AddAsync(user);
-                await this.repository.SaveChangesAsync();
+                //await this.repository.AddAsync(user);
+                //await this.repository.SaveChangesAsync();
                 return this.Redirect("/Administration/Dashboard/Index");
             }
 

@@ -1,4 +1,6 @@
-﻿namespace CustomERP.Web
+﻿using CustomERP.Data.Common.Models;
+
+namespace CustomERP.Web
 {
     using System.Reflection;
 
@@ -59,6 +61,7 @@
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
+            services.AddTransient<IApplicationUserService, ApplicationUserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

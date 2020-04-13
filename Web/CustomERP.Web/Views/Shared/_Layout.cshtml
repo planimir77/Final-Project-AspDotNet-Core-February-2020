@@ -7,48 +7,90 @@
     <title>@this.ViewData["Title"] - @GlobalConstants.SystemName</title>
 
     <environment names="Development">
-        <link href="~/lib/bootstrap/dist/css/bootstrap-my.css" rel="stylesheet" asp-append-version="true" />
+        <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" asp-append-version="true" />
+        <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" asp-append-version="true" />
         <link href="~/css/site.css" rel="stylesheet" asp-append-version="true" />
     </environment>
     <environment names="Staging,Production">
+        <link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" asp-append-version="true" />
         <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" asp-append-version="true" />
         <link href="~/css/site.min.css" rel="stylesheet" asp-append-version="true" />
     </environment>
 </head>
 <body>
+    <div id="wrapper" class="">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul id="sidebar_menu" class="sidebar-nav">
+                <li class="fa-group">
+                    <a id="menu-toggle" title="Menu" href="#">
+                        Menu
+                        <i class="fa fa-bars glyphicon-to-right"></i>
+                    </a>
+                </li>
+            </ul>
+            <ul class="sidebar-nav" id="sidebar">
+                <li class="fa-group">
+                    <a class="text-white" asp-area="Administration" asp-controller="Account" asp-action="Index">
+                        Employees
+                        <i class="fas fa-user-friends glyphicon-to-right"></i>
+                    </a>
+                </li>
+                <ul class="sidebar-nav" id="sidebar">
+                    <li><a>link1<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+                    <li><a>link2<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+                </ul>
+                <li><a>Consulta<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+                <li><a>Relatorio<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- Header -->
     <header>
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark border-bottom box-shadow fixed-top">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.SystemName</a>
+                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index"><i class="fas fa-house-user bigger" title="Home"></i></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse text-right">
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Settings" asp-action="Index">Settings</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                        @*<li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="Settings" asp-action="Index">Settings</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="Production" asp-controller="Sections" asp-action="Index">Sections</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </li>*@
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    
-    <div class="container">
-        <partial name="_CookieConsentPartial" />
-        <main role="main" class="pb-3">
-            @this.RenderBody()
-        </main>
+    <!-- Page content -->
+    <div id="page-content-wrapper">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="container-fluid">
+                    <partial name="_CookieConsentPartial" />
+                    <main role="main" class="pb-1">
+                        @this.RenderBody()
+                    </main>
+                </div>
+            </div>
+        </div>
     </div>
-    
+
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; @DateTime.Now.Year - @GlobalConstants.SystemName - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>

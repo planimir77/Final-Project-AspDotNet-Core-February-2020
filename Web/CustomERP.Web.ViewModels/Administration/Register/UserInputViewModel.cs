@@ -16,5 +16,15 @@
         [MinLength(3)]
         [MaxLength(20)]
         public string Position { get; set; }
+
+        public int? ShiftId { get; set; }
+
+        public int? AddressId { get; set; }
+
+        public int? SectionId { get; set; }
+
+        public string CompanyId { get; set; }
+
+        public string ManagerId { get; set; }
     }
 }

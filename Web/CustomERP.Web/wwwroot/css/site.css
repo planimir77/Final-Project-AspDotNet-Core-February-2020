@@ -12,6 +12,7 @@ a.navbar-brand {
 html {
     font-size: 14px;
 }
+
 @media (min-width: 768px) {
     html {
         font-size: 16px;
@@ -21,11 +22,13 @@ html {
 .border-top {
     border-top: 1px solid #e5e5e5;
 }
+
 .border-bottom {
     border-bottom: 1px solid #e5e5e5;
 }
 
 .box-shadow {
+    box-shadow: 0 .25rem .75rem #000000;
     box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
@@ -47,6 +50,7 @@ body {
     background-color: rgba(255, 175, 0, 0.20);
     margin-bottom: 60px;
 }
+
 .footer {
     position: absolute;
     bottom: 0;
@@ -55,4 +59,263 @@ body {
     /* Set the fixed height of the footer here */
     height: 60px;
     line-height: 60px; /* Vertically center the text there */
+    margin-left: 50px;
 }
+/* My css*/
+
+/* Glyphicon*/
+.bigger {
+    font-size: 24px;
+    color: #f2a104;
+}
+
+.glyphicon-to-right {
+    float: right;
+    padding-right: 8px;
+    padding-top: 12px;
+    font-size: 24px;
+    color: #f2a104;
+    /* Glyphicon*/
+}
+
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+#wrapper {
+    padding-left: 70px;
+    transition: all .4s ease 0s;
+    height: 100%
+}
+
+#sidebar-wrapper {
+    margin-left: -200px;
+    left: 70px;
+    width: 170px;
+    background: #222;
+    position: fixed;
+    height: 100%;
+    z-index: 10000;
+    transition: all .5s ease 0s;
+}
+
+.sidebar-nav {
+    display: block;
+    float: left;
+    width: 170px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#page-content-wrapper {
+    padding-top: 70px;
+    padding-left: 0;
+    margin-left: 0;
+    width: 100%;
+    height: auto;
+}
+
+#wrapper.active {
+    padding-left: 140px;
+}
+
+    #wrapper.active #sidebar-wrapper {
+        left: 200px;
+    }
+
+#page-content-wrapper {
+    width: 100%;
+}
+
+#sidebar_menu li a, .sidebar-nav li a {
+    color: #f8f9fa;
+    display: block;
+    float: left;
+    text-decoration: none;
+    width: 170px;
+    background: #0f1b33;
+    border-top: 1px solid #373737;
+    border-bottom: 1px solid #1A1A1A;
+    -webkit-transition: background .7s;
+    -moz-transition: background .7s;
+    -o-transition: background .7s;
+    -ms-transition: background .7s;
+    transition: background .7s;
+}
+
+.sidebar_name {
+    padding-top: 25px;
+    color: #fff;
+    opacity: .7;
+}
+
+.sidebar-nav li {
+    line-height: 52px;
+    text-indent: 20px;
+}
+
+    .sidebar-nav li a {
+        color: #f8f9fa;
+        display: block;
+        text-decoration: none;
+    }
+
+        .sidebar-nav li a:hover {
+            color: #f2a104;
+            background: #0064af;
+            background: rgba(0, 100, 175, 0.41);
+            text-decoration: none;
+        }
+
+        .sidebar-nav li a:active,
+        .sidebar-nav li a:focus {
+            text-decoration: none;
+        }
+
+
+
+.sidebar-nav > .sidebar-brand {
+    height: 65px;
+    line-height: 60px;
+    font-size: 18px;
+}
+
+    .sidebar-nav > .sidebar-brand a {
+        color: #999999;
+    }
+
+        .sidebar-nav > .sidebar-brand a:hover {
+            color: #fff;
+            background: none;
+        }
+
+#main_icon {
+    float: right;
+    padding-right: 65px;
+    padding-top: 10px;
+}
+
+.sub_icon {
+    float: right;
+    padding-right: 65px;
+    padding-top: 10px;
+}
+
+.content-header {
+    height: 65px;
+    line-height: 65px;
+}
+
+    .content-header h1 {
+        margin: 0;
+        margin-left: 20px;
+        line-height: 65px;
+        display: inline-block;
+    }
+
+@media (max-width:767px) {
+    #wrapper {
+        padding-left: 32px;
+        transition: all .4s ease 0s;
+    }
+
+    #sidebar-wrapper {
+        left: 80px;
+    }
+
+    #wrapper.active {
+        padding-left: 170px;
+    }
+
+        #wrapper.active #sidebar-wrapper {
+            left: 200px;
+            width: 170px;
+            transition: all .4s ease 0s;
+        }
+
+    .sidebar-nav li {
+        line-height: 57px;
+    }
+
+    .nav-link {
+        display: block;
+        padding: 0.5rem 3.0rem;
+    }
+}
+
+@media (max-width:1200px) {
+    #wrapper {
+        padding-left: 32px;
+        transition: all .4s ease 0s;
+    }
+
+    #sidebar-wrapper {
+        left: 80px;
+    }
+
+    #wrapper.active {
+        padding-left: 170px;
+    }
+
+        #wrapper.active #sidebar-wrapper {
+            left: 200px;
+            width: 170px;
+            transition: all .4s ease 0s;
+        }
+
+    .sidebar-nav li {
+        line-height: 57px;
+    }
+}
+
+@media (max-width:1500px) {
+    #wrapper {
+        padding-left: 32px;
+        transition: all .4s ease 0s;
+    }
+
+    #sidebar-wrapper {
+        left: 80px;
+    }
+
+    #wrapper.active {
+        padding-left: 170px;
+    }
+
+        #wrapper.active #sidebar-wrapper {
+            left: 200px;
+            width: 170px;
+            transition: all .4s ease 0s;
+        }
+
+    .sidebar-nav li {
+        line-height: 57px;
+    }
+}
+
+@supports ((position: -webkit-sticky) or (position: sticky)) {
+    .sticky-top {
+        position: -webkit-sticky;
+        position: sticky;
+        top: auto;
+        z-index: 1020;
+    }
+}
+
+/* Logo */
+@media (min-width:767px) {
+    .sidebar-nav li {
+        line-height: 57px;
+    }
+}
+
+/*.nav-link {
+    display: block;
+    padding: 0.5rem 2.5rem;
+}*/
+/* Logo */
+
+
+/* My css*/
