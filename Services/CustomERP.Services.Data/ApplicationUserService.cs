@@ -1,8 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-namespace CustomERP.Services.Data
+﻿namespace CustomERP.Services.Data
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using CustomERP.Data.Common.Repositories;
@@ -41,9 +40,26 @@ namespace CustomERP.Services.Data
 
         public IEnumerable<T> GetAll<T>()
         {
-            var users = this.applicationUserRepository.All()
+            var users =
+                this.applicationUserRepository
+                .All()
+                .Where(x => x.FullName != "First Created Owner")
                 .To<T>();
+
             return users;
+        }
+
+        public T GetById<T>(string id)
+        {
+            var user = this.applicationUserRepository.All().Where(x => x.Id == id).To<T>().FirstOrDefault();
+
+            return user;
+        }
+
+        public string GetIdByFullName(string fullName)
+        {
+            var userId = this.applicationUserRepository.All().FirstOrDefault(x => x.FullName == fullName)?.Id;
+            return userId;
         }
     }
 }

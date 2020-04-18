@@ -41,6 +41,19 @@
             return this.View(viewModel);
         }
 
+        // GET: /Accounts/Details/id
+        public IActionResult Details(string id)
+        {
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                return this.NotFound();
+            }
+
+            var viewModel = this.userService.GetById<EmployeeDetailsViewModel>(id);
+
+            return this.View(viewModel);
+        }
+
         // GET: /Accounts/RegisterEmployee
         public IActionResult RegisterEmployee()
         {
@@ -86,19 +99,16 @@
 
             inputModel.CreatedFrom = this.User.Identities.FirstOrDefault()?.Name;
 
-            var existingЕmployee = this.userService.GetAll<EmployeeRegisterViewModel>()
-                .FirstOrDefault(u => u.FullName == inputModel.FullName);
+            var existingЕmployeeId = this.userService.GetIdByFullName(inputModel.FullName);
 
-            if (existingЕmployee == null)
+            if (existingЕmployeeId == null)
             {
-                var id = await this.userService.RegisterAsync(inputModel);
+                var userId = await this.userService.RegisterAsync(inputModel);
 
-                // TODO Return Details(id)
-                return this.Redirect("/Administration/Accounts/Index");
+                return this.RedirectToAction(nameof(this.Details), new { id = userId});
             }
 
-            // TODO Return existing user Details(id) with message
-            return this.Content("Username  already exist");
+            return this.RedirectToAction(nameof(this.Details), new { id = existingЕmployeeId});
         }
     }
 }

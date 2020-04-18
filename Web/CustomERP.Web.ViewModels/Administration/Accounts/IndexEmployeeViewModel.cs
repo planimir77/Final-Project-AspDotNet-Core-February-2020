@@ -8,6 +8,8 @@
 
     public class IndexEmployeeViewModel : IMapFrom<ApplicationUser>
     {
+        public string Id { get; set; }
+
         [Display(Name = "Employee Name")]
         public string FullName { get; set; }
 

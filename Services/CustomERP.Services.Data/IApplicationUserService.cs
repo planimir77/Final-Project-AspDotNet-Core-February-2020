@@ -10,5 +10,9 @@
         Task<string> RegisterAsync(EmployeeRegisterViewModel employee);
 
         IEnumerable<T> GetAll<T>();
+
+        T GetById<T>(string id);
+
+        string GetIdByFullName(string fullName);
     }
 }
