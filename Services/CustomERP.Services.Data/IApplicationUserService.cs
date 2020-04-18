@@ -7,7 +7,7 @@
 
     public interface IApplicationUserService
     {
-        Task<string> RegisterAsync(EmployeeInputViewModel employee);
+        Task<string> RegisterAsync(EmployeeRegisterViewModel employee);
 
         IEnumerable<T> GetAll<T>();
     }

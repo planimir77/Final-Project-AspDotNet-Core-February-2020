@@ -19,7 +19,7 @@ namespace CustomERP.Services.Data
             this.applicationUserRepository = applicationUserRepository;
         }
 
-        public async Task<string> RegisterAsync(EmployeeInputViewModel employee)
+        public async Task<string> RegisterAsync(EmployeeRegisterViewModel employee)
         {
             var applicationUser = new ApplicationUser
             {

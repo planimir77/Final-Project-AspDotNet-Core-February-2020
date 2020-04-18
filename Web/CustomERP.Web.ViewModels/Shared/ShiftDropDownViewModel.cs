@@ -1,11 +1,11 @@
-﻿using CustomERP.Data.Models;
-using CustomERP.Services.Mapping;
-
-namespace CustomERP.Web.ViewModels.Shared
+﻿namespace CustomERP.Web.ViewModels.Shared
 {
+    using CustomERP.Data.Models;
+    using CustomERP.Services.Mapping;
+
     public class ShiftDropDownViewModel : IMapFrom<Shift>
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         public string Name { get; set; }
     }

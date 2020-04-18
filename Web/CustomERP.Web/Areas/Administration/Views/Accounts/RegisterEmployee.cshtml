@@ -1,7 +1,14 @@
-﻿@model CustomERP.Web.ViewModels.Administration.Accounts.EmployeeInputViewModel
+﻿@model CustomERP.Web.ViewModels.Administration.Accounts.EmployeeRegisterViewModel
 @{
     this.ViewData["Title"] = "Register New Employee";
+
     var companies = this.Model.Companies.Select(x => new SelectListItem(x.Name, x.Id));
+
+    var sections = this.Model.Sections.Select(x => new SelectListItem(x.Name, x.Id.ToString()));
+
+    var shifts = this.Model.Shifts.Select(x => new SelectListItem(x.Name, x.Id.ToString()));
+
+    var users = this.Model.ApplicationUsers.Select(x => new SelectListItem(x.FullName, x.Id));
 }
 
 <div class="row">
@@ -21,7 +28,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="@Model.ShiftId"></label>
-                <input asp-for="@Model.ShiftId" class="form-control" />
+                <select asp-for="ShiftId" asp-items="@shifts" class="form-control"></select>
                 <span asp-validation-for="@Model.ShiftId" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -31,17 +38,17 @@
             </div>
             <div class="form-group">
                 <label asp-for="@Model.SectionId"></label>
-                <input asp-for="@Model.SectionId" class="form-control" />
+                <select asp-for="SectionId" asp-items="@sections" class="form-control"></select>
                 <span asp-validation-for="@Model.SectionId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="@Model.CompanyId"></label>
-                <select asp-for="CompanyId" class="form-control" asp-items=@companies></select>
+                <select asp-for="CompanyId" asp-items=@companies class="form-control"></select>
                 <span asp-validation-for="@Model.CompanyId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="@Model.ManagerId"></label>
-                <input asp-for="@Model.ManagerId" class="form-control" />
+                <select asp-for="ManagerId" asp-items="users" class="form-control"></select>
                 <span asp-validation-for="@Model.ManagerId" class="text-danger"></span>
             </div>
             <div class="d-flex justify-content-between">
@@ -51,7 +58,7 @@
         </form>
     </div>
 </div>
-<hr/>
+<hr />
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

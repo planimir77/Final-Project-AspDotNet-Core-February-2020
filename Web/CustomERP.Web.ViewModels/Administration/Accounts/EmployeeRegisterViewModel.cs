@@ -1,25 +1,25 @@
-﻿using System.Collections.Generic;
-using CustomERP.Web.ViewModels.Shared;
-
-namespace CustomERP.Web.ViewModels.Administration.Accounts
+﻿namespace CustomERP.Web.ViewModels.Administration.Accounts
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     using CustomERP.Data.Models;
     using CustomERP.Services.Mapping;
+    using CustomERP.Web.ViewModels.Shared;
 
-    public class EmployeeInputViewModel : IMapFrom<ApplicationUser>
+    public class EmployeeRegisterViewModel : IMapFrom<ApplicationUser>
     {
         [Required]
         [MinLength(8)]
         [MaxLength(50)]
         [Display(Name = "Full Name")]
         [RegularExpression(
-            "^([A-Z][a-z]+\\s[A-Z][a-z]+\\s[A-Z][a-z]+|[А-Я][а-я]+\\s[А-Я][а-я]+\\s[А-Я][а-я]+)")]
+            "^([A-Z][a-z]+\\s[A-Z][a-z]+\\s[A-Z][a-z]+|[А-Я][а-я]+\\s[А-Я][а-я]+\\s[А-Я][а-я]+)",
+            ErrorMessage = "The \"Full Name\" field must be in the format \"Firstname Secondname Lastname\", each beginning with a capital letter, separated by one space.")]
         public string FullName { get; set; }
 
         [Required]
-        [MinLength(3)]
+        [StringLength(20, ErrorMessage = "The \"Position\" field must be between '3' and '20' characters long", MinimumLength = 3)]
         [MaxLength(20)]
         public string Position { get; set; }
 

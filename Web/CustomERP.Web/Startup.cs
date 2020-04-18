@@ -65,6 +65,7 @@ namespace CustomERP.Web
             services.AddTransient<ICompaniesService, CompaniesService>();
             services.AddTransient<IDepartmentsService, DepartmentsService>();
             services.AddTransient<ISectionsService, SectionsService>();
+            services.AddTransient<IShiftsService, ShiftsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

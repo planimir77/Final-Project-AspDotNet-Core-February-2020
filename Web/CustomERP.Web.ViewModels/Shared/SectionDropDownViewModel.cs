@@ -5,7 +5,7 @@
 
     public class SectionDropDownViewModel : IMapFrom<Section>
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         public string Name { get; set; }
     }

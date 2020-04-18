@@ -1,10 +1,8 @@
-﻿using System.Security;
-using System.Threading.Tasks;
-
-namespace CustomERP.Services.Data
+﻿namespace CustomERP.Services.Data
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using CustomERP.Data.Common.Repositories;
     using CustomERP.Data.Models;
