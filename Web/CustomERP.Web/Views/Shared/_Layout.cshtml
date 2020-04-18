@@ -8,12 +8,12 @@
 
     <environment names="Development">
         <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" asp-append-version="true" />
-        <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" asp-append-version="true" />
+        <link href="~/lib/bootstrap/dist/css/bootstrap-superhero.css" rel="stylesheet" asp-append-version="true" />
         <link href="~/css/site.css" rel="stylesheet" asp-append-version="true" />
     </environment>
     <environment names="Staging,Production">
         <link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" asp-append-version="true" />
-        <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" asp-append-version="true" />
+        <link href="~/lib/bootstrap/dist/css/bootstrap-superhero.min.css" rel="stylesheet" asp-append-version="true" />
         <link href="~/css/site.min.css" rel="stylesheet" asp-append-version="true" />
     </environment>
 </head>
@@ -21,28 +21,41 @@
     <div id="wrapper" class="">
 
         <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul id="sidebar_menu" class="sidebar-nav">
-                <li class="fa-group">
-                    <a id="menu-toggle" title="Menu" href="#">
-                        Menu
-                        <i class="fa fa-bars glyphicon-to-right"></i>
+        <div id="sidebar-wrapper" class="bg-dark">
+            <ul class="sidebar-nav" id="sidebar_menu">
+                <li class="fa-group bg-dark">
+                    <a id="menu-toggle" href="#">
+                        <i class="fas fa-angle-double-right glyphicon-to-right" id="angle-double-right"></i>
+                        <i class="fas fa-angle-double-left glyphicon-to-left invisible" id="angle_double_left"></i>
                     </a>
                 </li>
             </ul>
             <ul class="sidebar-nav" id="sidebar">
-                <li class="fa-group">
-                    <a class="text-white" asp-area="Administration" asp-controller="Account" asp-action="Index">
-                        Employees
-                        <i class="fas fa-user-friends glyphicon-to-right"></i>
+                <li class="fa-group nav-item">
+                    <a asp-area="Administration" asp-controller="Account" asp-action="Index" title="Employees">
+                        Employees<i class="fas fa-user-friends glyphicon-to-right"></i>
                     </a>
                 </li>
-                <ul class="sidebar-nav" id="sidebar">
-                    <li><a>link1<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-                    <li><a>link2<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-                </ul>
-                <li><a>Consulta<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-                <li><a>Relatorio<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+                <li class="fa-group nav-item">
+                    <a @*asp-area="" asp-controller="" asp-action="" *@title="Factory">
+                        Factory<i class="fas fa-industry glyphicon-to-right"></i>
+                    </a>
+                </li>
+                <li class="fa-group nav-item">
+                    <a @*asp-area="" asp-controller="" asp-action="" *@title="Warehouse">
+                        Warehouse<i class="fas fa-warehouse glyphicon-to-right"></i>
+                    </a>
+                </li>
+                <li class="fa-group nav-item">
+                    <a @*asp-area="" asp-controller="" asp-action="" *@title="Technical Support">
+                        <i class="fas fa-tools glyphicon-to-right"></i>Technical Support
+                    </a>
+                </li>
+                <li class="fa-group nav-item">
+                    <a @*asp-area="" asp-controller="" asp-action="" *@title="Recipes">
+                        <i class="fas fa-flask glyphicon-to-right"></i>Recipes
+                    </a>
+                </li>
             </ul>
         </div>
 

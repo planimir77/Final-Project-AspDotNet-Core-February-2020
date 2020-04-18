@@ -1,14 +1,14 @@
-﻿using CustomERP.Data.Models;
-
-namespace CustomERP.Services.Data
+﻿namespace CustomERP.Services.Data
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
+
+    using CustomERP.Web.ViewModels.Administration.Accounts;
 
     public interface IApplicationUserService
     {
-        Task<string> CreateAsync(string fullName, string position, int? shiftId, int? addressId,
-            int? sectionId,string companyId,  string managerId);
+        Task<string> RegisterAsync(EmployeeInputViewModel employee);
 
-        Task<ApplicationUser> GetByFullName(string fullName);
+        IEnumerable<T> GetAll<T>();
     }
 }

@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\CustomERP.Data.Common\CustomERP.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\CustomERP.Data.Models\CustomERP.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Web\CustomERP.Web.ViewModels\CustomERP.Web.ViewModels.csproj" />
     <ProjectReference Include="..\CustomERP.Services.Mapping\CustomERP.Services.Mapping.csproj" />
   </ItemGroup>
 

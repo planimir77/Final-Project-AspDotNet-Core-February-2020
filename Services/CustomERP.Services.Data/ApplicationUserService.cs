@@ -1,10 +1,14 @@
-﻿namespace CustomERP.Services.Data
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace CustomERP.Services.Data
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using CustomERP.Data.Common.Repositories;
     using CustomERP.Data.Models;
-    using Microsoft.EntityFrameworkCore;
+    using CustomERP.Services.Mapping;
+    using CustomERP.Web.ViewModels.Administration.Accounts;
 
     public class ApplicationUserService : IApplicationUserService
     {
@@ -15,18 +19,18 @@
             this.applicationUserRepository = applicationUserRepository;
         }
 
-        public async Task<string> CreateAsync(
-            string fullName, string position, int? shiftId, int? addressId, int? sectionId, string companyId, string managerId)
+        public async Task<string> RegisterAsync(EmployeeInputViewModel employee)
         {
             var applicationUser = new ApplicationUser
             {
-                FullName = fullName,
-                Position = position,
-                ShiftId = shiftId,
-                AddressId = addressId,
-                SectionId = sectionId,
-                CompanyId = companyId,
-                ManagerId = managerId,
+                FullName = employee.FullName,
+                Position = employee.Position,
+                ShiftId = employee.ShiftId,
+                AddressId = employee.AddressId,
+                SectionId = employee.SectionId,
+                CompanyId = employee.CompanyId,
+                ManagerId = employee.ManagerId,
+                CreatedFrom = employee.CreatedFrom,
             };
 
             await this.applicationUserRepository.AddAsync(applicationUser);
@@ -35,11 +39,11 @@
             return applicationUser.Id;
         }
 
-        public async Task<ApplicationUser> GetByFullName(string fullName)
+        public IEnumerable<T> GetAll<T>()
         {
-            var user =
-                this.applicationUserRepository.All().FirstOrDefaultAsync(u => u.FullName == fullName);
-            return await user;
+            var users = this.applicationUserRepository.All()
+                .To<T>();
+            return users;
         }
     }
 }

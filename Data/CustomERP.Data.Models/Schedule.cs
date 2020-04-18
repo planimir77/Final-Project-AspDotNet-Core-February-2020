@@ -20,6 +20,7 @@ namespace CustomERP.Data.Models
         public string Name { get; set; }
 
         [Required]
+        [Range(1,30)]
         public int NumberOfDays { get; set; }
 
         [Required]

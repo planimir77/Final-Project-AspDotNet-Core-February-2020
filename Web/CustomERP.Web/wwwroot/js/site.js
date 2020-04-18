@@ -6,4 +6,7 @@
 $("#menu-toggle").click(function(e) {
     e.preventDefault();
     $("#wrapper").toggleClass("active");
+    if("#angle_double_left")
+    $("#angle_double_left").toggleClass("invisible");
+    $("#angle-double-right").toggleClass("invisible");
 });

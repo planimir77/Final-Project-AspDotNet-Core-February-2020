@@ -1,12 +1,12 @@
-﻿@model CustomERP.Web.ViewModels.Administration.Register.UserInputViewModel
+﻿@model CustomERP.Web.ViewModels.Administration.Accounts.EmployeeInputViewModel
 @{
-    this.ViewData["Title"] = "Register New User";
+    this.ViewData["Title"] = "Register New Employee";
+    var companies = this.Model.Companies.Select(x => new SelectListItem(x.Name, x.Id));
 }
 
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Register" method="post">
-            <h4>Add a new user.</h4>
+        <form asp-action="RegisterEmployee" method="post">
             <hr />
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
@@ -36,7 +36,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="@Model.CompanyId"></label>
-                <input asp-for="@Model.CompanyId" class="form-control" />
+                <select asp-for="CompanyId" class="form-control" asp-items=@companies></select>
                 <span asp-validation-for="@Model.CompanyId" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -44,10 +44,14 @@
                 <input asp-for="@Model.ManagerId" class="form-control" />
                 <span asp-validation-for="@Model.ManagerId" class="text-danger"></span>
             </div>
-            <button type="submit" class="btn btn-primary">Register</button>
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-outline-success">Register</button>
+                <button type="button" class="btn btn-outline-warning">Cancel</button>
+            </div>
         </form>
     </div>
 </div>
+<hr/>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
