@@ -1,9 +1,11 @@
 ﻿@model CustomERP.Web.ViewModels.Administration.Accounts.EmployeeDetailsViewModel;
 @{
     ViewData["Title"] = "Details";
+    var managerOf = this.Model.ApplicationUserManagers.ToList();
 }
-<div class="bg-blue border-primary rounded-lg">
-    <table>
+<hr />
+<div class="container-fluid bg-blue border-primary rounded-lg">
+    <table class="table-xs">
         <tbody>
             <tr>
                 <td class="dt">@Html.DisplayNameFor(x => x.FullName)</td>
@@ -23,7 +25,7 @@
             </tr>
             <tr>
                 <td class="dt">@Html.DisplayNameFor(x => x.Roles)</td>
-                <td>@Html.DisplayFor(x => x.Roles)<span>user</span>, <span>powerUser</span>, <span>executive</span>, <span>Главен офис</span>, <span>taskWorker</span>, <span>support</span></td>
+                <td>@Html.DisplayFor(x => x.Roles)</td>
             </tr>
             <tr>
                 <td class="dt">@Html.DisplayNameFor(x => x.SectionName)</td>
@@ -35,19 +37,38 @@
             </tr>
             <tr>
                 <td class="dt">@Html.DisplayNameFor(x => x.CreatedOn)</td>
-                <td>on <span class="" style="color: #001326" title="">@Html.DisplayFor(x => x.CreatedOn)</span> from <a class="" title="" href="#">@Html.DisplayFor(x => x.CreatedFrom)</a></td>
-            </tr>
-            <tr>
-                <td class="dt">@Html.DisplayNameFor(x => x.ModifiedOn)</td>
-                <td>on <span class="" style="color: #001326" title="">@Html.DisplayFor(x => x.ModifiedOn)</span> from <a class="" title="" href="#">@Html.DisplayFor(x => x.ModifiedFrom)</a></td>
-            </tr>
-            <tr>
-                <td class="dt">Последно</td>
                 <td>
-                    <span class="timeSpan" style="color: #001d3a" title="18.11.2019 16:54:49 (Понеделник)">18.11.2019 16:54</span> от
-                    <div class="vislog"><a target="_blank" class="vislog-country out" title="България" href="http://bgwhois.com/?query=88.87.20.15">BG</a>&nbsp;<span class="vislog-ip" title="Hr,Valla,Work2,Work1,Secretary,ExpertA,Account,Cash,Dealer,Ceo2,Sell1,Sklad,Admin,Ceo1"><span style="color: #030e4a; background-color: #a5b0ab">88.87.20.15</span></span>&nbsp;<a class="vislog-cnt" style="color: #B20000;" href="/vislog_History/?ip=88.87.20.15">355/400</a></div>
+                    on <span style="color: #001326">@Html.DisplayFor(x => x.CreatedOn)</span>
+                    from <a class="" title="" href="#">@Html.DisplayFor(x => x.CreatedFrom)</a>
                 </td>
             </tr>
+            @if (Model.ModifiedOn != null)
+            {
+                <tr>
+                    <td class="dt">@Html.DisplayNameFor(x => x.ModifiedOn)</td>
+                    <td>on <span class="" style="color: #001326" title="">@Html.DisplayFor(x => x.ModifiedOn)</span> from <a class="" title="" href="#">@Html.DisplayFor(x => x.ModifiedFrom)</a></td>
+                </tr>
+            }
+
+            @if (managerOf.Any())
+            {
+                <tr class="border-top border-light">
+                    <td class="dt">@Html.DisplayNameFor(x => x.ApplicationUserManagers)</td>
+                    <td>
+                        <div class="row">
+                            <div class="dt2">of</div>
+                            <table>
+                                <tbody>
+                                    @foreach (var employee in managerOf)
+                                    {
+                                        <tr><td><a asp-controller="Accounts" asp-action="Details" asp-route-id="@employee.Id" style="color: aliceblue" title="@employee.FullName">@employee.FullName</a></td></tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            }
         </tbody>
     </table>
 </div>

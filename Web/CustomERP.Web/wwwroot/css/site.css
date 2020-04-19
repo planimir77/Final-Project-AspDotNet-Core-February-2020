@@ -79,6 +79,19 @@ body {
     padding-right: 10px;
 }
 
+.dt2 {
+    font-family: Helvetica,Arial,Verdana,Sans-serif;
+    font-size: 15px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    vertical-align: top;
+    color: aliceblue;
+    white-space: nowrap;
+    padding-top: 1px;
+    padding-top: 4px;
+    padding-right: 4px;
+}
+
 .footer {
     position: absolute;
     bottom: 0;
@@ -95,6 +108,10 @@ body {
 .bigger {
     font-size: 24px;
     color: #f2a104;
+}
+
+.bigger-div {
+    font-size: 24px;
 }
 
 .glyphicon-to-right {
@@ -162,6 +179,11 @@ body {
 .sidebar-nav .dropdown-menu {
     position: static;
     float: none;
+}
+
+.table-xs th,
+.table-xs td {
+    padding: 0.2rem;
 }
 
 #page-content-wrapper {

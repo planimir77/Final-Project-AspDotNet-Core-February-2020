@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Security.Claims;
-using CustomERP.Data.Models;
-using Microsoft.AspNetCore.Identity;
-
-namespace CustomERP.Web.Areas.Administration.Controllers
+﻿namespace CustomERP.Web.Areas.Administration.Controllers
 {
     using System.Linq;
     using System.Threading.Tasks;
 
+    using CustomERP.Data.Models;
     using CustomERP.Services.Data;
     using CustomERP.Web.ViewModels.Administration.Accounts;
     using CustomERP.Web.ViewModels.Shared;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
     public class AccountsController : AdministrationController
@@ -63,6 +59,8 @@ namespace CustomERP.Web.Areas.Administration.Controllers
             var roles = this.userManager.GetRolesAsync(user).Result.Select(x => x).ToList();
             var rolesAsString = string.Join(", ", roles);
             viewModel.Roles = rolesAsString;
+            viewModel.CreatedOn = viewModel.CreatedOn.ToLocalTime();
+
             return this.View(viewModel);
         }
 

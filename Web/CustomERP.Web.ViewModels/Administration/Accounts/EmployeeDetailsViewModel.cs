@@ -1,4 +1,6 @@
-﻿namespace CustomERP.Web.ViewModels.Administration.Accounts
+﻿using System.Collections.Generic;
+
+namespace CustomERP.Web.ViewModels.Administration.Accounts
 {
     using System;
     using System.ComponentModel.DataAnnotations;
@@ -52,8 +54,9 @@
         [Display(Name = "Manager")]
         public string ApplicationUserManagerFullName { get; set; }
 
-        // TODO
-        //public virtual ICollection<ApplicationUser> ApplicationUserManagers { get; set; }
+        [Display(Name = "Manager")]
+        public IEnumerable<ManagerOfViewModel> ApplicationUserManagers { get; set; }
+
         [IgnoreMap]
         [Display(Name = "Roles")]
         public string Roles { get; set; }

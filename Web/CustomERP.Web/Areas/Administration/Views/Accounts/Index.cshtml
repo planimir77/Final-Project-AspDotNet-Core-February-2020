@@ -6,13 +6,14 @@
     var tableHeadData = new IndexEmployeeViewModel();
 }
 
-    <a class="btn btn-info border-dark" asp-area="Administration" asp-controller="Accounts" asp-action="RegisterEmployee" title="Register New Employee">
+    <a class="btn btn-success bigger-div btn-group-lg border-dark" asp-area="Administration" asp-controller="Accounts" asp-action="RegisterEmployee" title="Register New Employee">
         <i class="fas fa-user"></i>
+        &nbsp;
         <i class="fas fa-plus"></i>
     </a>
 <hr />
 <div class="table-responsive">
-    <table class="table table-striped table-hover table-bordered">
+    <table class="table table-sm table-striped table-hover table-bordered border-light w-auto">
         <thead>
             <tr>
                 <th><label asp-for="@tableHeadData.FullName"></label></th>
@@ -35,16 +36,16 @@
                 foreach (var user in Model.Users)
                 {
                     <tr>
-                        <td>
+                        <td style="white-space: nowrap">
                             <a class="nav-link" style="text-decoration: none" title="Details" asp-action="Details" asp-route-id="@user.Id">@user.FullName</a>
                         </td>
                         <td>@user.Position</td>
                         <td>@user.ShiftName</td>
                         <td>@user.SectionName</td>
                         <td>@user.CompanyName</td>
-                        <td>@user.ApplicationUserManagerFullName</td>
+                        <td title="@user.ApplicationUserManagerFullName">@user.ApplicationUserManagerFullName</td>
                         <td>@user.CreatedOn.ToString("D", CultureInfo.CurrentCulture)</td>
-                        <td>
+                        <td style="white-space: nowrap">
                             <button class="btn btn-success"><i class="fas fa-check"></i></button>
                             <button class="btn btn-primary" title="Edit"><i class="fas fa-user-edit"></i></button>
                             <button class="btn btn-danger" title="Remove"><i class="fas fa-trash-alt "></i></button>
