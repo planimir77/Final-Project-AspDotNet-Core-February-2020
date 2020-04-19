@@ -1,55 +1,61 @@
 ﻿namespace CustomERP.Web.ViewModels.Administration.Accounts
 {
     using System;
-    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
+    using AutoMapper;
     using CustomERP.Data.Models;
     using CustomERP.Services.Mapping;
-    using Microsoft.AspNetCore.Identity;
 
     public class EmployeeDetailsViewModel : IMapFrom<ApplicationUser>
     {
+        [Display(Name = "Name")]
         public string FullName { get; set; }
 
+        [Display(Name = "Position")]
         public string Position { get; set; }
 
-        public int? ShiftId { get; set; }
+        [Display(Name = "Shift")]
+        public string ShiftName { get; set; }
 
-        public virtual Shift Shift { get; set; }
-
-        // Audit info
+        [Display(Name = "Created")]
         public string CreatedFrom { get; set; }
 
+        [Display(Name = "Created")]
+        [DataType(DataType.DateTime)]
         public DateTime CreatedOn { get; set; }
 
+        [Display(Name = "Modified")]
+        [DataType(DataType.Date)]
         public DateTime? ModifiedOn { get; set; }
 
-        public string? ModifiedFrom { get; set; }
+        [Display(Name = "Modified")]
+        public string ModifiedFrom { get; set; }
 
-        public bool IsDeleted { get; set; }
-
+        [Display(Name = "Modified")]
+        [DataType(DataType.Date)]
         public DateTime? DeletedOn { get; set; }
 
-        public string? DeletedFrom { get; set; }
+        [Display(Name = "Deleted")]
+        public string DeletedFrom { get; set; }
+        // TODO
+        //public int? AddressId { get; set; }
+        //
+        //public virtual Address UserAddress { get; set; }
 
-        public int? AddressId { get; set; }
+        [Display(Name = "Section")]
+        public string SectionName { get; set; }
 
-        public virtual Address UserAddress { get; set; }
+        [Display(Name = "Company")]
+        public string CompanyName { get; set; }
 
-        public int? SectionId { get; set; }
+        [Display(Name = "Manager")]
+        public string ApplicationUserManagerFullName { get; set; }
 
-        public virtual Section Section { get; set; }
-
-        public string? CompanyId { get; set; }
-
-        public virtual Company Company { get; set; }
-
-        public string? ManagerId { get; set; }
-
-        public virtual ApplicationUser ApplicationUserManager { get; set; }
-
-        public virtual ICollection<ApplicationUser> ApplicationUserManagers { get; set; }
-
-        public virtual ICollection<IdentityUserRole<string>> Roles { get; set; }
+        // TODO
+        //public virtual ICollection<ApplicationUser> ApplicationUserManagers { get; set; }
+        [IgnoreMap]
+        [Display(Name = "Roles")]
+        public string Roles { get; set; }
     }
 }

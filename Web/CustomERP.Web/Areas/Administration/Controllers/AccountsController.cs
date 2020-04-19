@@ -1,4 +1,10 @@
-﻿namespace CustomERP.Web.Areas.Administration.Controllers
+﻿using System;
+using System.Collections.Generic;
+using System.Security.Claims;
+using CustomERP.Data.Models;
+using Microsoft.AspNetCore.Identity;
+
+namespace CustomERP.Web.Areas.Administration.Controllers
 {
     using System.Linq;
     using System.Threading.Tasks;
@@ -14,17 +20,20 @@
         private readonly ICompaniesService companiesService;
         private readonly ISectionsService sectionsService;
         private readonly IShiftsService shiftService;
+        private readonly UserManager<ApplicationUser> userManager;
 
         public AccountsController(
             IApplicationUserService userService,
             ICompaniesService companiesService,
             ISectionsService sectionsService,
-            IShiftsService shiftService)
+            IShiftsService shiftService,
+            UserManager<ApplicationUser> userManager)
         {
             this.userService = userService;
             this.companiesService = companiesService;
             this.sectionsService = sectionsService;
             this.shiftService = shiftService;
+            this.userManager = userManager;
         }
 
         // GET: /Accounts/Index
@@ -50,7 +59,10 @@
             }
 
             var viewModel = this.userService.GetById<EmployeeDetailsViewModel>(id);
-
+            var user = this.userManager.Users.FirstOrDefault(x => x.Id == id);
+            var roles = this.userManager.GetRolesAsync(user).Result.Select(x => x).ToList();
+            var rolesAsString = string.Join(", ", roles);
+            viewModel.Roles = rolesAsString;
             return this.View(viewModel);
         }
 
@@ -97,7 +109,7 @@
                 return this.View();
             }
 
-            inputModel.CreatedFrom = this.User.Identities.FirstOrDefault()?.Name;
+            inputModel.CreatedFrom = this.userManager.GetUserAsync(this.User).Result.FullName;
 
             var existingЕmployeeId = this.userService.GetIdByFullName(inputModel.FullName);
 
@@ -105,6 +117,7 @@
             {
                 var userId = await this.userService.RegisterAsync(inputModel);
 
+                // TODO Return Details(id)
                 return this.RedirectToAction(nameof(this.Details), new { id = userId});
             }
 

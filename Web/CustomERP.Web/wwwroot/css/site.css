@@ -29,6 +29,10 @@ button.bg-dark:focus {
     background-color: #72a2c0 !important;
 }
 
+.bg-blue {
+    background-color: #5184bb;
+}
+
 .border-top {
     border-top: 1px solid #e5e5e5;
 }
@@ -59,6 +63,20 @@ body {
     /*background-color: #ffaf00;
     background-color: rgba(255, 175, 0, 0.20);*/
     margin-bottom: 60px;
+}
+
+.dt {
+    font-family: Helvetica,Arial,Verdana,Sans-serif;
+    font-size: 18px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    vertical-align: top;
+    line-height: 1.3em;
+    width: 30.0%;
+    text-align: right;
+    color: #000000;
+    white-space: nowrap;
+    padding-right: 10px;
 }
 
 .footer {

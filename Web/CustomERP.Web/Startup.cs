@@ -1,6 +1,4 @@
-﻿using CustomERP.Data.Common.Models;
-
-namespace CustomERP.Web
+﻿namespace CustomERP.Web
 {
     using System.Reflection;
 
