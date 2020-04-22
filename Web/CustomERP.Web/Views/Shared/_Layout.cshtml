@@ -18,90 +18,73 @@
     </environment>
 </head>
 <body>
-    <div id="wrapper" class="">
-
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper" class="bg-dark">
-            <ul class="sidebar-nav" id="sidebar_menu">
-                <li class="fa-group bg-dark">
-                    <a id="menu-toggle" href="#">
-                        <i class="fas fa-angle-double-right glyphicon-to-right" id="angle-double-right"></i>
-                        <i class="fas fa-angle-double-left glyphicon-to-left invisible" id="angle_double_left"></i>
-                    </a>
-                </li>
-            </ul>
-            <ul class="sidebar-nav" id="sidebar">
-                <li class="fa-group nav-item">
-                    <a asp-area="Administration" asp-controller="Accounts" asp-action="Index" title="Employees">
-                        Employees<i class="fas fa-user-friends glyphicon-to-right"></i>
-                    </a>
-                </li>
-                <li class="fa-group nav-item">
-                    <a @*asp-area="" asp-controller="" asp-action="" *@title="Factory">
-                        Factory<i class="fas fa-industry glyphicon-to-right"></i>
-                    </a>
-                </li>
-                <li class="fa-group nav-item">
-                    <a @*asp-area="" asp-controller="" asp-action="" *@title="Warehouse">
-                        Warehouse<i class="fas fa-warehouse glyphicon-to-right"></i>
-                    </a>
-                </li>
-                <li class="fa-group nav-item">
-                    <a @*asp-area="" asp-controller="" asp-action="" *@title="Technical Support">
-                        <i class="fas fa-tools glyphicon-to-right"></i>Technical Support
-                    </a>
-                </li>
-                <li class="fa-group nav-item">
-                    <a @*asp-area="" asp-controller="" asp-action="" *@title="Recipes">
-                        <i class="fas fa-flask glyphicon-to-right"></i>Recipes
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-    </div>
-
-    <!-- Header -->
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark border-bottom box-shadow fixed-top">
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark box-shadow">
             <div class="container">
-                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index"><i class="fas fa-house-user bigger" title="Home"></i></a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.SystemName</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                        aria-expanded="false" aria-label="Toggle navigation" onclick="menuToggle">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse text-right">
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        @*<li class="nav-item">
-                                <a class="nav-link text-white" asp-area="" asp-controller="Settings" asp-action="Index">Settings</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" asp-area="Production" asp-controller="Sections" asp-action="Index">Sections</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                            </li>*@
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Settings" asp-action="Index" title="settings">Settings</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <!-- Page content -->
-    <div id="page-content-wrapper">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="container-fluid">
-                    <partial name="_CookieConsentPartial" />
-                    <main role="main" class="pb-1">
-                        @this.RenderBody()
-                    </main>
-                </div>
-            </div>
-        </div>
+
+    <div id="mySidepanel" class="sidepanel">
+        <ul id="sidebar">
+            <li class="nav-item">
+                <a id="menu-toggle">
+                    <i class="fas fa-angle-double-right glyphicon-to-right" id="angle-double-right"></i>
+                    <i class="fas fa-angle-double-left glyphicon-to-left invisible" id="angle_double_left"></i>
+                    @*fas fa-angle-double-right*@
+                </a>
+            </li>
+            <li class="nav-item" onmouseover="openNav()">
+                <a class="bg-dark text-left" style="text-align: left" asp-area="Administration" asp-controller="Dashboard" asp-action="Index" title="Employees">
+                    Dashboard<i class="fas fa-tachometer-alt glyphicon-to-right"></i>
+                </a>
+            </li>
+            <li class="nav-item" onmouseover="openNav()">
+                <a class="bg-dark" @*asp-area="" asp-controller="" asp-action="*@>
+                    Factory<i class="fas fa-industry glyphicon-to-right"></i>
+                </a>
+            </li>
+            <li class="nav-item" onmouseover="openNav()">
+                <a class="bg-dark" @*asp-area="" asp-controller="" asp-action="" *@>
+                    Warehouse<i class="fas fa-warehouse glyphicon-to-right"></i>
+                </a>
+            </li>
+            <li class=" nav-item" onmouseover="openNav()">
+                <a class="bg-dark" @*asp-area="" asp-controller="" asp-action="" *@>
+                    <i class="fas fa-tools glyphicon-to-right"></i>Technical Support
+                </a>
+            </li>
+            <li class="nav-item" onmouseover="openNav()">
+                <a class="bg-dark" @*asp-area="" asp-controller="" asp-action="" *@>
+                    <i class="fas fa-flask glyphicon-to-right"></i>Recipes
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="container-fluid">
+        <partial name="_CookieConsentPartial" />
+        <main role="main" class="pb-3 pl-5">
+            @this.RenderBody()
+        </main>
     </div>
 
     <footer class="border-top footer text-muted">

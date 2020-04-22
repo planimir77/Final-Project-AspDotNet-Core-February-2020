@@ -16,6 +16,11 @@
             this.companyRepository = companyRepository;
         }
 
+        public int GetCount()
+        {
+            return this.companyRepository.All().Count();
+        }
+
         public IEnumerable<T> GetAll<T>()
         {
             return this.companyRepository.All().To<T>().ToList();

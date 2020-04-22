@@ -64,6 +64,7 @@
             services.AddTransient<IDepartmentsService, DepartmentsService>();
             services.AddTransient<ISectionsService, SectionsService>();
             services.AddTransient<IShiftsService, ShiftsService>();
+            services.AddTransient<ISchedulesService, SchedulesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

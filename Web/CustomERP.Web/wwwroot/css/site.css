@@ -1,11 +1,7 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
-a.navbar-brand {
-    white-space: normal;
-    text-align: center;
-    word-break: break-all;
-}
+
 
 /* Sticky footer styles
 -------------------------------------------------- */
@@ -19,9 +15,13 @@ html {
     }
 }
 
-/*.bg-dark {
-    background-color: #0f1b33 !important;
-}*/
+
+body {
+    /* Margin bottom by footer height */
+    /*background-color: #ffaf00;
+    background-color: rgba(255, 175, 0, 0.20);*/
+    margin-bottom: 60px;
+}
 
 a.bg-dark:hover, a.bg-dark:focus,
 button.bg-dark:hover,
@@ -53,17 +53,127 @@ button.accept-policy {
 
 /* Sticky footer styles
 -------------------------------------------------- */
-html {
-    position: relative;
-    min-height: 100%;
+ul {
+    list-style-type: none;
 }
 
-body {
-    /* Margin bottom by footer height */
-    /*background-color: #ffaf00;
-    background-color: rgba(255, 175, 0, 0.20);*/
-    margin-bottom: 60px;
+/* Collapsed Sidepanel
+        --------------------------------------------------------------------- */
+/* The sidepanel menu */
+#menu-toggle {
+    background-color: #0f1b33 !important;
 }
+
+.sidepanel {
+    height: 100%; /* Specify a height */
+    width: 300px; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1020; /* Stay on top */
+    top: 60px;
+    left: -245px;
+    /*background-color: #111;  Black Removed*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 0px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidepanel */
+}
+
+    /* The sidepanel links */
+    .sidepanel ul li {
+        line-height: 30px;
+    }
+
+        .sidepanel ul li a { /* .sidepanel a { */
+            padding: 8px 8px 8px 8px;
+            float: left; /* Added */
+            width: 260px; /* Added*/
+            /*background-color: #0f1b33;*/ /* Added*/
+            margin-bottom: 1px; /* Added*/
+            text-decoration: none;
+            font-size: 25px;
+            /*color: #818181;*/
+            border-top-right-radius: 17px !important;
+            border-bottom-right-radius: 17px !important;
+            border-top: 1px solid #373737;
+            border-bottom: 1px solid rgba(255, 175, 0, 0.41);
+            display: block;
+            transition: 0.5s;
+        }
+
+
+    /* When you mouse over the navigation links, change their color */
+    .sidepanel a:hover {
+        color: #f1f1f1;
+    }
+
+    /* Position and style the close button (top right corner) */
+    .sidepanel .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+/* Style the button that is used to open the sidepanel */
+.openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #111;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+}
+
+    .openbtn:hover {
+        background-color: #444;
+    }
+/* Collapsed Sidepanel
+----------------------------------------------------------------------*/
+
+.dash-widget .card-body {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.card-icon {
+    border-radius: 8px !important;
+}
+
+.card {
+    border: 1px solid #ffaf00;
+    border: 1px solid rgba(255, 175, 0, 0.31);
+    margin-bottom: 30px;
+    border-radius: 10px !important;
+}
+
+.card-icon .fas {
+    font-size: 34px;
+    margin: 10px;
+    color: #fff;
+}
+
+.card-right {
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+    .card-right .card-title {
+        margin-bottom: 5px;
+        font-size: 16px;
+    }
+
+    .card-right p {
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+.ctm-border-radius {
+    border-radius: 10px !important;
+}
+
 
 .dt {
     font-family: Helvetica,Arial,Verdana,Sans-serif;
@@ -93,14 +203,12 @@ body {
 }
 
 .footer {
-    position: absolute;
     bottom: 0;
     width: 100%;
     white-space: nowrap;
     /* Set the fixed height of the footer here */
-    height: 60px;
+    height: 10px;
     line-height: 60px; /* Vertically center the text there */
-    margin-left: 50px;
 }
 /* My css*/
 
@@ -117,7 +225,7 @@ body {
 .glyphicon-to-right {
     float: right;
     padding-right: 8px;
-    padding-top: 18px;
+    padding-top: 4px;
     font-size: 24px;
     color: #f2a104;
 }
@@ -125,278 +233,10 @@ body {
 .glyphicon-to-left {
     float: left;
     padding-left: 10px;
-    padding-top: 18px;
+    padding-top: 4px;
     font-size: 24px;
     color: #f2a104;
 }
 /* Glyphicon*/
-
-.dropdown:hover > .dropdown-menu {
-    display: block;
-}
-
-.fixed-top {
-    left: 50px;
-}
-
-.row {
-    margin-left: 0px;
-    margin-right: 0px;
-}
-
-#wrapper {
-    padding-left: 70px;
-    transition: all .4s ease 0s;
-    height: 100%
-}
-
-#sidebar-wrapper {
-    margin-left: -200px;
-    left: 70px;
-    width: 170px;
-    /*background: #222;*/
-    position: fixed;
-    height: 100%;
-    z-index: 10000;
-    transition: all .5s ease 0s;
-}
-
-.sidebar-nav {
-    display: block;
-    display: flex;
-    flex-direction: column;
-    float: left;
-    width: 170px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-.sidebar-nav .nav-link {
-    padding-right: 0;
-    padding-left: 0;
-}
-
-.sidebar-nav .dropdown-menu {
-    position: static;
-    float: none;
-}
-
-.table-xs th,
-.table-xs td {
-    padding: 0.2rem;
-}
-
-#page-content-wrapper {
-    padding-top: 60px;
-    padding-left: 50px;
-    margin-left: 0;
-    width: 100%;
-    height: auto;
-}
-
-#wrapper.active {
-    padding-left: 140px;
-}
-
-    #wrapper.active #sidebar-wrapper {
-        left: 200px;
-    }
-
-#page-content-wrapper {
-    width: 100%;
-}
-
-#sidebar_menu li a, .sidebar-nav li a {
-    /*color: #f8f9fa;*/
-    display: block;
-    float: left;
-    text-decoration: none;
-    width: 170px;
-    /*background: #0f1b33;*/
-    border-top: 1px solid #373737;
-    border-bottom: 1px solid #1A1A1A;
-    -webkit-transition: background .7s;
-    -moz-transition: background .7s;
-    -o-transition: background .7s;
-    -ms-transition: background .7s;
-    transition: background .7s;
-}
-
-.sidebar_name {
-    padding-top: 25px;
-    color: #fff;
-    opacity: .7;
-}
-
-.sidebar-nav li {
-    line-height: 52px;
-    text-indent: 6px;
-}
-
-    .sidebar-nav li a {
-        color: #f8f9fa;
-        display: block;
-        text-decoration: none;
-    }
-
-        .sidebar-nav li a:hover {
-            color: #f2a104;
-            background: #00743f;
-            text-decoration: none;
-        }
-
-        .sidebar-nav li a:active,
-        .sidebar-nav li a:focus {
-            text-decoration: none;
-        }
-
-#sidebar_menu {
-    padding-bottom: 18px;
-}
-
-#sidebar_menu li a:hover{
-    background: none;
-}
-
-/*.angle_double_left {
-    margin-left: -28px;
-}*/
-
-.sidebar-nav > .sidebar-brand {
-    height: 65px;
-    line-height: 60px;
-    font-size: 18px;
-}
-
-    .sidebar-nav > .sidebar-brand a {
-        color: #999999;
-    }
-
-        .sidebar-nav > .sidebar-brand a:hover {
-            color: #fff;
-            background: none;
-        }
-
-#main_icon {
-    float: right;
-    padding-right: 65px;
-    padding-top: 10px;
-}
-
-.sub_icon {
-    float: right;
-    padding-right: 65px;
-    padding-top: 10px;
-}
-
-.content-header {
-    height: 65px;
-    line-height: 65px;
-}
-
-    .content-header h1 {
-        margin: 0;
-        margin-left: 20px;
-        line-height: 65px;
-        display: inline-block;
-    }
-
-@media (max-width:767px) {
-    #wrapper {
-        padding-left: 32px;
-        transition: all .4s ease 0s;
-    }
-
-    #sidebar-wrapper {
-        left: 80px;
-    }
-
-    #wrapper.active {
-        padding-left: 170px;
-    }
-
-        #wrapper.active #sidebar-wrapper {
-            left: 200px;
-            width: 170px;
-            transition: all .4s ease 0s;
-        }
-
-    .sidebar-nav li {
-        line-height: 57px;
-    }
-}
-
-@media (max-width:1200px) {
-    #wrapper {
-        padding-left: 32px;
-        transition: all .4s ease 0s;
-    }
-
-    #sidebar-wrapper {
-        left: 80px;
-    }
-
-    #wrapper.active {
-        padding-left: 170px;
-    }
-
-        #wrapper.active #sidebar-wrapper {
-            left: 200px;
-            width: 170px;
-            transition: all .4s ease 0s;
-        }
-
-    .sidebar-nav li {
-        line-height: 57px;
-    }
-}
-
-@media (max-width:1500px) {
-    #wrapper {
-        padding-left: 32px;
-        transition: all .4s ease 0s;
-    }
-
-    #sidebar-wrapper {
-        left: 80px;
-    }
-
-    #wrapper.active {
-        padding-left: 170px;
-    }
-
-        #wrapper.active #sidebar-wrapper {
-            left: 200px;
-            width: 170px;
-            transition: all .4s ease 0s;
-        }
-
-    .sidebar-nav li {
-        line-height: 57px;
-    }
-}
-
-@supports ((position: -webkit-sticky) or (position: sticky)) {
-    .sticky-top {
-        position: -webkit-sticky;
-        position: sticky;
-        top: auto;
-        z-index: 1020;
-    }
-}
-
-/* Logo */
-@media (min-width:767px) {
-    .sidebar-nav li {
-        line-height: 57px;
-    }
-}
-
-/*.nav-link {
-    display: block;
-    padding: 0.5rem 2.5rem;
-}*/
-/* Logo */
-
 
 /* My css*/

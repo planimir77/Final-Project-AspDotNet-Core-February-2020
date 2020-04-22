@@ -38,6 +38,11 @@
             return applicationUser.Id;
         }
 
+        public int GetCount()
+        {
+            return this.applicationUserRepository.All().Count();
+        }
+
         public IEnumerable<T> GetAll<T>()
         {
             var users =

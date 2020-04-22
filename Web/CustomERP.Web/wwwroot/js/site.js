@@ -5,8 +5,33 @@
 
 $("#menu-toggle").click(function(e) {
     e.preventDefault();
-    $("#wrapper").toggleClass("active");
-    if("#angle_double_left")
-    $("#angle_double_left").toggleClass("invisible");
-    $("#angle-double-right").toggleClass("invisible");
+    
+    var myMenu = $("#mySidepanel").css("left");
+
+    if (myMenu === "-245px" || myMenu ==="") {
+        $("#mySidepanel").css("left", "-40px");
+        $("#angle-double-right").removeClass("fas fa-angle-double-right");
+        $("#angle-double-right").addClass("fas fa-angle-double-left");
+    } else {
+        $("#mySidepanel").css("left","-245px");
+        $("#angle-double-right").removeClass("fas fa-angle-double-left");
+        $("#angle-double-right").addClass("fas fa-angle-double-right");
+    }
+
 });
+
+
+
+function openNav() {
+    $("#mySidepanel").css("left", "-40px");
+    $("#angle-double-right").removeClass("fas fa-angle-double-right");
+    $("#angle-double-right").addClass("fas fa-angle-double-left");
+
+    setTimeout(function() {
+        $("#mySidepanel").css("left","-245px");
+        $("#angle-double-right").removeClass("fas fa-angle-double-left");
+        $("#angle-double-right").addClass("fas fa-angle-double-right");
+    }, 5000);
+
+};
+

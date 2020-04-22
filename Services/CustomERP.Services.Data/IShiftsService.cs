@@ -4,6 +4,8 @@
 
     public interface IShiftsService
     {
+        int GetCount();
+
         IEnumerable<T> GetAll<T>();
     }
 }

@@ -4,6 +4,8 @@
 
     public interface ICompaniesService
     {
+        int GetCount();
+
         IEnumerable<T> GetAll<T>();
     }
 }

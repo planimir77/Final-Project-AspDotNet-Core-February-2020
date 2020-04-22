@@ -9,6 +9,8 @@
     {
         Task<string> RegisterAsync(EmployeeRegisterViewModel employee);
 
+        int GetCount();
+
         IEnumerable<T> GetAll<T>();
 
         T GetById<T>(string id);

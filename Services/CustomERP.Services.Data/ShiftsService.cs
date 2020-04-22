@@ -16,6 +16,11 @@
             this.shiftRepository = shiftRepository;
         }
 
+        public int GetCount()
+        {
+            return this.shiftRepository.All().Count();
+        }
+
         public IEnumerable<T> GetAll<T>()
         {
             return this.shiftRepository.All().To<T>().ToList();
