@@ -2,8 +2,6 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using CustomERP.Services.Mapping;
-
     public class IndexViewModel
     {
         [Display(Name = "Employees")]

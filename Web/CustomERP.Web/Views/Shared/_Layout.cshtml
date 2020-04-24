@@ -30,7 +30,7 @@
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index" title="Home"><i class="fas fa-home bigger"></i></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="Settings" asp-action="Index" title="settings">Settings</a>
@@ -54,7 +54,7 @@
                 </a>
             </li>
             <li class="nav-item" onmouseover="openNav()">
-                <a class="bg-dark text-left" style="text-align: left" asp-area="Administration" asp-controller="Dashboard" asp-action="Index" title="Employees">
+                <a class="bg-dark text-left" style="text-align: left" asp-area="Administration" asp-controller="Dashboard" asp-action="Index" title="Dashboard">
                     Dashboard<i class="fas fa-tachometer-alt glyphicon-to-right"></i>
                 </a>
             </li>
@@ -87,7 +87,7 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted fixed-bottom">
         <div class="container">
             &copy; @DateTime.Now.Year - @GlobalConstants.SystemName - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>

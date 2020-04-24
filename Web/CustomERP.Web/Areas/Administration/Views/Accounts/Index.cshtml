@@ -4,14 +4,20 @@
 @{
     this.ViewData["Title"] = "Admin page";
     var tableHeadData = new IndexEmployeeViewModel();
+    var message = TempData["MessageContent"]?.ToString();
 }
 
-    <a class="btn btn-success bigger-div btn-group-lg border-dark" asp-area="Administration" asp-controller="Accounts" asp-action="RegisterEmployee" title="Register New Employee">
-        <i class="fas fa-user"></i>
-        &nbsp;
-        <i class="fas fa-plus"></i>
-    </a>
+<a class="btn btn-success bigger-div btn-group-lg border-dark" asp-area="Administration" asp-controller="Accounts" asp-action="RegisterEmployee" title="Register New Employee">
+    <i class="fas fa-user"></i>
+    &nbsp;
+    <i class="fas fa-plus"></i>
+</a>
 <hr />
+@if (!string.IsNullOrWhiteSpace(message))
+{
+    <h4 class="text-warning">@message</h4>
+    <br />
+}
 <div class="table-responsive">
     <table class="table table-sm table-striped table-hover table-bordered border-light w-auto">
         <thead>
@@ -46,9 +52,9 @@
                         <td title="@user.ApplicationUserManagerFullName">@user.ApplicationUserManagerFullName</td>
                         <td>@user.CreatedOn.ToString("D", CultureInfo.CurrentCulture)</td>
                         <td style="white-space: nowrap">
-                            <button class="btn btn-success"><i class="fas fa-check"></i></button>
-                            <button class="btn btn-primary" title="Edit"><i class="fas fa-user-edit"></i></button>
-                            <button class="btn btn-danger" title="Remove"><i class="fas fa-trash-alt "></i></button>
+                            <a class="btn btn-success"><i class="fas fa-check"></i></a>
+                            <a class="btn btn-primary" title="Edit" asp-action="Edit" asp-route-id="@user.Id"><i class="fas fa-user-edit"></i></a>
+                            <a class="btn btn-danger" title="Remove" asp-action="Delete" asp-route-id="@user.Id"><i class="fas fa-trash-alt "></i></a>
                         </td>
                     </tr>
                 }

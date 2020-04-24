@@ -2,13 +2,16 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     using CustomERP.Data.Models;
     using CustomERP.Services.Mapping;
     using CustomERP.Web.ViewModels.Shared;
 
-    public class EmployeeRegisterViewModel : IMapFrom<ApplicationUser>
+    public class EmployeeEditViewModel : IMapFrom<ApplicationUser>
     {
+        public string Id { get; set; }
+
         [Required]
         [MaxLength(50)]
         [Display(Name = "Full Name")]
@@ -25,12 +28,26 @@
         [Display(Name = "Shift")]
         public int? ShiftId { get; set; }
 
+        [ForeignKey(nameof(ShiftId))]
+        public Shift Shift { get; set; }
+
+        [EmailAddress]
+        [Display(Name = "Address")]
+        public string Email { get; set; }
+
         public IEnumerable<ShiftDropDownViewModel> Shifts { get; set; }
 
+        [Display(Name = "Address")]
         public int? AddressId { get; set; }
+
+        [ForeignKey(nameof(AddressId))]
+        public Address Address { get; set; }
 
         [Display(Name = "Section")]
         public int? SectionId { get; set; }
+
+        [ForeignKey(nameof(SectionId))]
+        public Section Section { get; set; }
 
         public IEnumerable<SectionDropDownViewModel> Sections { get; set; }
 
@@ -43,7 +60,5 @@
         public string ManagerId { get; set; }
 
         public IEnumerable<ApplicationUserDropDownViewModel> ApplicationUsers { get; set; }
-
-        public string CreatedFrom { get; set; }
     }
 }

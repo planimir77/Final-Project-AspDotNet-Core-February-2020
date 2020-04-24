@@ -21,7 +21,7 @@ namespace CustomERP.Data.Models
         }
 
         [Required]
-        [MinLength(8)]
+        [MaxLength(50)]
         [RegularExpression(
             "^([A-Z][a-z]+\\s[A-Z][a-z]+\\s[A-Z][a-z]+|[А-Я][а-я]+\\s[А-Я][а-я]+\\s[А-Я][а-я]+)")]
         public string FullName { get; set; }

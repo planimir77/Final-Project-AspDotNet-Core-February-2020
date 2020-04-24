@@ -23,7 +23,6 @@
             this.shiftsService = shiftsService;
         }
 
-
         public IActionResult Index()
         {
             var viewModel = new IndexViewModel

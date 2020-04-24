@@ -66,5 +66,43 @@
             var userId = this.applicationUserRepository.All().FirstOrDefault(x => x.FullName == fullName)?.Id;
             return userId;
         }
+
+        public async Task<string> Update(EmployeeEditInputModel inputModel)
+        {
+            var userId = inputModel.Id;
+
+            var user = this.applicationUserRepository.All().FirstOrDefault(x => x.Id == userId);
+
+            if (user != null)
+            {
+                user.FullName = inputModel.FullName;
+                user.Position = inputModel.Position;
+                user.ShiftId = inputModel.ShiftId;
+                user.AddressId = inputModel.AddressId;
+                user.SectionId = inputModel.SectionId;
+                user.CompanyId = inputModel.CompanyId;
+                user.ManagerId = inputModel.ManagerId;
+                user.ModifiedFrom = inputModel.ModifiedFrom;
+
+                this.applicationUserRepository.Update(user);
+                await this.applicationUserRepository.SaveChangesAsync();
+            }
+
+            return user?.Id;
+        }
+
+        public async Task<string> DeleteById(string id, string admin)
+        {
+            var user = this.applicationUserRepository.All().FirstOrDefault(x => x.Id == id);
+            this.applicationUserRepository.Delete(user);
+            if (user != null)
+            {
+                user.DeletedFrom = admin;
+            }
+
+            await this.applicationUserRepository.SaveChangesAsync();
+
+            return user?.FullName;
+        }
     }
 }

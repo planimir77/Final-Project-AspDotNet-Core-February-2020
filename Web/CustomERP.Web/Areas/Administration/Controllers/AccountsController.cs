@@ -12,6 +12,11 @@
 
     public class AccountsController : AdministrationController
     {
+        private const string EmployeeExist = "Тhe employee already exists in the database";
+        private const string NotBeenSaved = " not been saved, try again!";
+        private const string SuccessfullyUpdated = "Successfully updated";
+        private const string SuccessfullyDelete = "Successfully delete ";
+
         private readonly IApplicationUserService userService;
         private readonly ICompaniesService companiesService;
         private readonly ISectionsService sectionsService;
@@ -32,7 +37,7 @@
             this.userManager = userManager;
         }
 
-        // GET: /Accounts/Index
+        // GET: Administration/Accounts/Index
         [HttpGet]
         public IActionResult Index()
         {
@@ -46,8 +51,8 @@
             return this.View(viewModel);
         }
 
-        // GET: /Accounts/Details/id
-        public IActionResult Details(string id)
+        // GET: Administration/Accounts/Details/id
+        public IActionResult Details(string id, string message = "")
         {
             if (string.IsNullOrWhiteSpace(id))
             {
@@ -61,13 +66,15 @@
             viewModel.Roles = rolesAsString;
             viewModel.CreatedOn = viewModel.CreatedOn.ToLocalTime();
 
+            this.ViewData["Message"] = message;
+
             return this.View(viewModel);
         }
 
-        // GET: /Accounts/RegisterEmployee
+        // GET: Administration/Accounts/RegisterEmployee
         public IActionResult RegisterEmployee()
         {
-            var company =
+            var companies =
                 this.companiesService
                 .GetAll<CompanyDropDownViewModel>()
                 .Prepend(new CompanyDropDownViewModel { Id = string.Empty, Name = string.Empty });
@@ -89,7 +96,7 @@
 
             var viewModel = new EmployeeRegisterViewModel
             {
-                Companies = company,
+                Companies = companies,
                 Sections = sections,
                 Shifts = shifts,
                 ApplicationUsers = users,
@@ -98,8 +105,9 @@
             return this.View(viewModel);
         }
 
-        // POST:  /Accounts/RegisterEmployee
+        // POST:  Administration/Accounts/RegisterEmployee
         [HttpPost]
+
         public async Task<IActionResult> RegisterEmployee(EmployeeRegisterViewModel inputModel)
         {
             if (!this.ModelState.IsValid)
@@ -115,11 +123,86 @@
             {
                 var userId = await this.userService.RegisterAsync(inputModel);
 
-                // TODO Return Details(id)
-                return this.RedirectToAction(nameof(this.Details), new { id = userId});
+                return this.RedirectToAction(nameof(this.Details), new { id = userId });
             }
 
-            return this.RedirectToAction(nameof(this.Details), new { id = existingЕmployeeId});
+            var messageContent = EmployeeExist;
+
+            return this.RedirectToAction("Details", "Accounts", new { id = existingЕmployeeId, message = messageContent });
+        }
+
+        // GET: Administration/Accounts/Edit/id
+        public IActionResult Edit(string id)
+        {
+            var companies =
+                this.companiesService
+                    .GetAll<CompanyDropDownViewModel>();
+
+            var sections =
+                this.sectionsService
+                    .GetAll<SectionDropDownViewModel>();
+
+            var shifts =
+                this.shiftService
+                    .GetAll<ShiftDropDownViewModel>();
+
+            var users =
+                this.userService
+                    .GetAll<ApplicationUserDropDownViewModel>();
+
+            var viewModel = this.userService.GetById<EmployeeEditViewModel>(id);
+
+            viewModel.ApplicationUsers = users;
+            viewModel.Companies = companies;
+            viewModel.Sections = sections;
+            viewModel.Shifts = shifts;
+
+            return this.View(viewModel);
+        }
+
+        // Post: Administration/Accounts/Edit/
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditAsync(EmployeeEditInputModel inputModel)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                this.ViewData["Message"] = NotBeenSaved;
+                return this.Edit(inputModel.Id);
+            }
+
+            inputModel.ModifiedFrom = this.userManager.GetUserAsync(this.User).Result.FullName;
+
+            var userId = await this.userService.Update(inputModel);
+
+            var messageContent = SuccessfullyUpdated;
+
+            return this.RedirectToAction("Details", "Accounts", new { id = userId, message = messageContent });
+        }
+
+        // Get: Administration/Accounts/Delete/id
+        [HttpGet]
+        public async Task<IActionResult> Delete(string id)
+        {
+            return await this.DeleteAsync(id);
+        }
+
+        // Post: Administration/Accounts/DeleteAsync/id
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteAsync(string id)
+        {
+            if (id == null)
+            {
+                return this.NotFound();
+            }
+
+            var admin = this.userManager.GetUserAsync(this.User).Result.FullName;
+            var name = await this.userService.DeleteById(id, admin);
+
+            this.TempData["MessageContent"] = SuccessfullyDelete + name;
+
+            return this.RedirectToAction("Index", "Accounts");
         }
     }
 }

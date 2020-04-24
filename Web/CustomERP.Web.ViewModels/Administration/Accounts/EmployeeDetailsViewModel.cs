@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace CustomERP.Web.ViewModels.Administration.Accounts
+﻿namespace CustomERP.Web.ViewModels.Administration.Accounts
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     using AutoMapper;
@@ -40,18 +39,18 @@ namespace CustomERP.Web.ViewModels.Administration.Accounts
 
         [Display(Name = "Deleted")]
         public string DeletedFrom { get; set; }
-        // TODO
-        //public int? AddressId { get; set; }
-        //
-        //public virtual Address UserAddress { get; set; }
 
+        // TODO
+        // public int? AddressId { get; set; }
+
+        // public virtual Address UserAddress { get; set; }
         [Display(Name = "Section")]
         public string SectionName { get; set; }
 
         [Display(Name = "Company")]
         public string CompanyName { get; set; }
 
-        [Display(Name = "Manager")]
+        [Display(Name = "Report")]
         public string ApplicationUserManagerFullName { get; set; }
 
         [Display(Name = "Manager")]

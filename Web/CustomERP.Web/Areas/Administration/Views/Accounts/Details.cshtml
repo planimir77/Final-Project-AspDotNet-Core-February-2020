@@ -4,71 +4,80 @@
     var managerOf = this.Model.ApplicationUserManagers.ToList();
 }
 <hr />
-<div class="container-fluid bg-blue border-primary rounded-lg">
-    <table class="table-xs">
-        <tbody>
-            <tr>
-                <td class="dt">@Html.DisplayNameFor(x => x.FullName)</td>
-                <td>@Html.DisplayFor(x => x.FullName)</td>
-            </tr>
-            <tr>
-                <td class="dt">@Html.DisplayNameFor(x => x.Position)</td>
-                <td>@Html.DisplayFor(x => x.Position)</td>
-            </tr>
-            <tr>
-                <td class="dt">@Html.DisplayNameFor(x => x.ApplicationUserManagerFullName)</td>
-                <td>@Html.DisplayFor(x => x.ApplicationUserManagerFullName)</td>
-            </tr>
-            <tr>
-                <td class="dt">@Html.DisplayNameFor(x => x.ShiftName)</td>
-                <td>@Html.DisplayFor(x => x.ShiftName)</td>
-            </tr>
-            <tr>
-                <td class="dt">@Html.DisplayNameFor(x => x.Roles)</td>
-                <td>@Html.DisplayFor(x => x.Roles)</td>
-            </tr>
-            <tr>
-                <td class="dt">@Html.DisplayNameFor(x => x.SectionName)</td>
-                <td>@Html.DisplayFor(x => x.SectionName)</td>
-            </tr>
-            <tr>
-                <td class="dt">@Html.DisplayNameFor(x => x.CompanyName)</td>
-                <td>@Html.DisplayFor(x => x.CompanyName)</td>
-            </tr>
-            <tr>
-                <td class="dt">@Html.DisplayNameFor(x => x.CreatedOn)</td>
-                <td>
-                    on <span style="color: #001326">@Html.DisplayFor(x => x.CreatedOn)</span>
-                    from <a class="" title="" href="#">@Html.DisplayFor(x => x.CreatedFrom)</a>
-                </td>
-            </tr>
-            @if (Model.ModifiedOn != null)
-            {
+<div class="container-sm">
+    <h4 class="text-warning">@ViewData["Message"]</h4>
+    <br />
+    <h1>@ViewData["Title"]</h1>
+    <hr />
+    <div class="container-sm bg-blue border-primary rounded-lg">
+        <table class="table">
+            <tbody>
                 <tr>
-                    <td class="dt">@Html.DisplayNameFor(x => x.ModifiedOn)</td>
-                    <td>on <span class="" style="color: #001326" title="">@Html.DisplayFor(x => x.ModifiedOn)</span> from <a class="" title="" href="#">@Html.DisplayFor(x => x.ModifiedFrom)</a></td>
+                    <td class="dt">@Html.DisplayNameFor(x => x.FullName)</td>
+                    <td>@Html.DisplayFor(x => x.FullName)</td>
                 </tr>
-            }
-
-            @if (managerOf.Any())
-            {
-                <tr class="border-top border-light">
-                    <td class="dt">@Html.DisplayNameFor(x => x.ApplicationUserManagers)</td>
+                <tr>
+                    <td class="dt">@Html.DisplayNameFor(x => x.Position)</td>
+                    <td>@Html.DisplayFor(x => x.Position)</td>
+                </tr>
+                @if (!string.IsNullOrWhiteSpace(Model.ApplicationUserManagerFullName))
+                {
+                    <tr>
+                        <td class="dt">@Html.DisplayNameFor(x => x.ApplicationUserManagerFullName)</td>
+                        <td>to @Html.DisplayFor(x => x.ApplicationUserManagerFullName)</td>
+                    </tr>
+                }
+                <tr>
+                    <td class="dt">@Html.DisplayNameFor(x => x.ShiftName)</td>
+                    <td>@Html.DisplayFor(x => x.ShiftName)</td>
+                </tr>
+                <tr>
+                    <td class="dt">@Html.DisplayNameFor(x => x.Roles)</td>
+                    <td>@Html.DisplayFor(x => x.Roles)</td>
+                </tr>
+                <tr>
+                    <td class="dt">@Html.DisplayNameFor(x => x.SectionName)</td>
+                    <td>@Html.DisplayFor(x => x.SectionName)</td>
+                </tr>
+                <tr>
+                    <td class="dt">@Html.DisplayNameFor(x => x.CompanyName)</td>
+                    <td>@Html.DisplayFor(x => x.CompanyName)</td>
+                </tr>
+                <tr>
+                    <td class="dt">@Html.DisplayNameFor(x => x.CreatedOn)</td>
                     <td>
-                        <div class="row">
-                            <div class="dt2">of</div>
-                            <table>
-                                <tbody>
-                                    @foreach (var employee in managerOf)
-                                    {
-                                        <tr><td><a asp-controller="Accounts" asp-action="Details" asp-route-id="@employee.Id" style="color: aliceblue" title="@employee.FullName">@employee.FullName</a></td></tr>
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
+                        on <span style="color: #001326">@Html.DisplayFor(x => x.CreatedOn)</span>
+                        from <a class="" title="" href="#">@Html.DisplayFor(x => x.CreatedFrom)</a>
                     </td>
                 </tr>
-            }
-        </tbody>
-    </table>
+                @if (Model.ModifiedOn != null)
+                {
+                    <tr>
+                        <td class="dt">@Html.DisplayNameFor(x => x.ModifiedOn)</td>
+                        <td>on <span class="" style="color: #001326" title="">@Html.DisplayFor(x => x.ModifiedOn)</span> from <a class="" title="" href="#">@Html.DisplayFor(x => x.ModifiedFrom)</a></td>
+                    </tr>
+                }
+
+                @if (managerOf.Any())
+                {
+                    <tr class="border-top border-light">
+                        <td class="dt">@Html.DisplayNameFor(x => x.ApplicationUserManagers)</td>
+                        <td>
+                            <div class="row">
+                                <div class="dt2">of</div>
+                                <table>
+                                    <tbody>
+                                        @foreach (var employee in managerOf)
+                                        {
+                                            <tr><td><a asp-controller="Accounts" asp-action="Details" asp-route-id="@employee.Id" style="color: aliceblue" title="@employee.FullName">@employee.FullName</a></td></tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>

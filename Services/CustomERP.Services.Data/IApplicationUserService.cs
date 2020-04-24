@@ -16,5 +16,9 @@
         T GetById<T>(string id);
 
         string GetIdByFullName(string fullName);
+
+        Task<string> Update(EmployeeEditInputModel inputModel);
+
+        Task<string> DeleteById(string id, string admin);
     }
 }
