@@ -1,8 +1,9 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace CustomERP.Data.Migrations
+﻿namespace CustomERP.Data.Migrations
 {
+    using System;
+
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -48,7 +49,7 @@ namespace CustomERP.Data.Migrations
                     IsDeleted = table.Column<bool>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     ModifiedFrom = table.Column<string>(nullable: true),
-                    DeletedFrom = table.Column<string>(nullable: true)
+                    DeletedFrom = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -75,7 +76,7 @@ namespace CustomERP.Data.Migrations
                     Progress = table.Column<int>(maxLength: 50, nullable: false),
                     IsActive = table.Column<bool>(nullable: false, defaultValue: false),
                     CompletedOn = table.Column<DateTime>(nullable: true),
-                    Description = table.Column<string>(maxLength: 200, nullable: true)
+                    Description = table.Column<string>(maxLength: 200, nullable: true),
                 },
                 constraints: table =>
                 {
@@ -96,7 +97,7 @@ namespace CustomERP.Data.Migrations
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     DeletedFrom = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
-                    Value = table.Column<string>(nullable: true)
+                    Value = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -116,7 +117,7 @@ namespace CustomERP.Data.Migrations
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     DeletedFrom = table.Column<string>(nullable: true),
                     Name = table.Column<string>(maxLength: 50, nullable: false),
-                    AddressId = table.Column<int>(nullable: true)
+                    AddressId = table.Column<int>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -137,7 +138,7 @@ namespace CustomERP.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     RoleId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
-                    ClaimValue = table.Column<string>(nullable: true)
+                    ClaimValue = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -165,7 +166,7 @@ namespace CustomERP.Data.Migrations
                     DeletedFrom = table.Column<string>(nullable: true),
                     Name = table.Column<string>(maxLength: 50, nullable: false),
                     OrderId = table.Column<int>(nullable: true),
-                    SectionParentId = table.Column<int>(nullable: true)
+                    SectionParentId = table.Column<int>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -215,7 +216,7 @@ namespace CustomERP.Data.Migrations
                     AddressId = table.Column<int>(nullable: true),
                     SectionId = table.Column<int>(nullable: true),
                     CompanyId = table.Column<string>(nullable: true),
-                    ManagerId = table.Column<string>(nullable: true)
+                    ManagerId = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -254,7 +255,7 @@ namespace CustomERP.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
-                    ClaimValue = table.Column<string>(nullable: true)
+                    ClaimValue = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -274,7 +275,7 @@ namespace CustomERP.Data.Migrations
                     LoginProvider = table.Column<string>(nullable: false),
                     ProviderKey = table.Column<string>(nullable: false),
                     ProviderDisplayName = table.Column<string>(nullable: true),
-                    UserId = table.Column<string>(nullable: false)
+                    UserId = table.Column<string>(nullable: false),
                 },
                 constraints: table =>
                 {
@@ -292,7 +293,7 @@ namespace CustomERP.Data.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(nullable: false),
-                    RoleId = table.Column<string>(nullable: false)
+                    RoleId = table.Column<string>(nullable: false),
                 },
                 constraints: table =>
                 {
@@ -318,7 +319,7 @@ namespace CustomERP.Data.Migrations
                     UserId = table.Column<string>(nullable: false),
                     LoginProvider = table.Column<string>(nullable: false),
                     Name = table.Column<string>(nullable: false),
-                    Value = table.Column<string>(nullable: true)
+                    Value = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
                 {

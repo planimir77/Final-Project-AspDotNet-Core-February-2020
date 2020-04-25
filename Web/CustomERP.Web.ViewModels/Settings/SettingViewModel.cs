@@ -1,9 +1,8 @@
 ﻿namespace CustomERP.Web.ViewModels.Settings
 {
+    using AutoMapper;
     using CustomERP.Data.Models;
     using CustomERP.Services.Mapping;
-
-    using AutoMapper;
 
     public class SettingViewModel : IMapFrom<Setting>, IHaveCustomMappings
     {

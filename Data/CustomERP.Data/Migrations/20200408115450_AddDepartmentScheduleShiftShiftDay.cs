@@ -1,8 +1,9 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace CustomERP.Data.Migrations
+﻿namespace CustomERP.Data.Migrations
 {
+    using System;
+
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class AddDepartmentScheduleShiftShiftDay : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -85,7 +86,7 @@ namespace CustomERP.Data.Migrations
                     IsDeleted = table.Column<bool>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     DeletedFrom = table.Column<string>(nullable: true),
-                    Name = table.Column<string>(maxLength: 50, nullable: false)
+                    Name = table.Column<string>(maxLength: 50, nullable: false),
                 },
                 constraints: table =>
                 {
@@ -106,7 +107,7 @@ namespace CustomERP.Data.Migrations
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     DeletedFrom = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: false),
-                    NumberOfDays = table.Column<int>(nullable: false)
+                    NumberOfDays = table.Column<int>(nullable: false),
                 },
                 constraints: table =>
                 {
@@ -130,7 +131,7 @@ namespace CustomERP.Data.Migrations
                     Begins = table.Column<DateTime>(nullable: false),
                     Duration = table.Column<TimeSpan>(maxLength: 12, nullable: false),
                     IncludingRest = table.Column<TimeSpan>(maxLength: 12, nullable: false),
-                    ScheduleId = table.Column<int>(nullable: false)
+                    ScheduleId = table.Column<int>(nullable: false),
                 },
                 constraints: table =>
                 {
@@ -157,7 +158,7 @@ namespace CustomERP.Data.Migrations
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     DeletedFrom = table.Column<string>(nullable: true),
                     Name = table.Column<string>(maxLength: 20, nullable: false),
-                    ScheduleId = table.Column<int>(nullable: false)
+                    ScheduleId = table.Column<int>(nullable: false),
                 },
                 constraints: table =>
                 {

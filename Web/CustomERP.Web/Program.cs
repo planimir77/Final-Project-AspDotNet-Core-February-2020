@@ -1,8 +1,4 @@
-﻿using CustomERP.Data;
-using CustomERP.Data.Seeding;
-using Microsoft.EntityFrameworkCore;
-
-namespace CustomERP.Web
+﻿namespace CustomERP.Web
 {
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Hosting;

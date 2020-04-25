@@ -65,6 +65,10 @@
             var rolesAsString = string.Join(", ", roles);
             viewModel.Roles = rolesAsString;
             viewModel.CreatedOn = viewModel.CreatedOn.ToLocalTime();
+            if (viewModel.ModifiedOn != null)
+            {
+                viewModel.ModifiedOn = viewModel.ModifiedOn.Value.ToLocalTime();
+            }
 
             this.ViewData["Message"] = message;
 

@@ -20,6 +20,7 @@
         public string ShiftName { get; set; }
 
         [Display(Name = "Created")]
+        [DataType(customDataType: nameof(From))]
         public string CreatedFrom { get; set; }
 
         [Display(Name = "Created")]
@@ -31,6 +32,7 @@
         public DateTime? ModifiedOn { get; set; }
 
         [Display(Name = "Modified")]
+        [DataType(customDataType: nameof(From))]
         public string ModifiedFrom { get; set; }
 
         [Display(Name = "Modified")]

@@ -23,6 +23,5 @@
         public int ScheduleId { get; set; }
 
         public Schedule Schedule { get; set; }
-
     }
 }

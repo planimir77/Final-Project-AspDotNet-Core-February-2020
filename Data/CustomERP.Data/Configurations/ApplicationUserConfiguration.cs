@@ -63,7 +63,7 @@
             builder
                 .HasOne(e => e.UserAddress)
                 .WithMany(e => e.ApplicationUsers)
-                .HasForeignKey(e => e.AddressId )
+                .HasForeignKey(e => e.AddressId)
                 .IsRequired(false)
                 .OnDelete(DeleteBehavior.Restrict);
             builder
@@ -75,13 +75,13 @@
             builder
                 .HasOne(e => e.Section)
                 .WithMany(e => e.ApplicationUsers)
-                .HasForeignKey(e => e.SectionId )
+                .HasForeignKey(e => e.SectionId)
                 .IsRequired(false)
                 .OnDelete(DeleteBehavior.Restrict);
             builder
                 .HasOne(e => e.Company)
                 .WithMany(e => e.ApplicationUsers)
-                .HasForeignKey(e => e.CompanyId )
+                .HasForeignKey(e => e.CompanyId)
                 .IsRequired(false)
                 .OnDelete(DeleteBehavior.Restrict);
             builder

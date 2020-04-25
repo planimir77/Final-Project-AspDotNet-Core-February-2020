@@ -1,9 +1,10 @@
-﻿using System.Linq;
-using CustomERP.Data.Common.Repositories;
-using CustomERP.Data.Models;
-
-namespace CustomERP.Services.Data
+﻿namespace CustomERP.Services.Data
 {
+    using System.Linq;
+
+    using CustomERP.Data.Common.Repositories;
+    using CustomERP.Data.Models;
+
     public class SchedulesService : ISchedulesService
     {
         private readonly IDeletableEntityRepository<Schedule> scheduleRepository;

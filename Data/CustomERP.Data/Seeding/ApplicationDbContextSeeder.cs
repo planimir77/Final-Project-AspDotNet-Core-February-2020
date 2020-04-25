@@ -21,7 +21,6 @@
                 throw new ArgumentNullException(nameof(serviceProvider));
             }
 
-
             var logger = serviceProvider.GetService<ILoggerFactory>().CreateLogger(typeof(ApplicationDbContextSeeder));
 
             var seeders = new List<ISeeder>

@@ -21,7 +21,7 @@
             builder
                 .HasOne(e => e.CompanyAddress)
                 .WithMany(e => e.Companies)
-                .HasForeignKey(e => e.AddressId )
+                .HasForeignKey(e => e.AddressId)
                 .IsRequired(false)
                 .OnDelete(DeleteBehavior.Restrict);
 

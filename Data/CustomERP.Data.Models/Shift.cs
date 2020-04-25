@@ -1,10 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace CustomERP.Data.Models
+﻿namespace CustomERP.Data.Models
 {
-    using System;
     using System.Collections.Generic;
-    using System.Text;
+    using System.ComponentModel.DataAnnotations;
 
     using CustomERP.Data.Common.Models;
 
