@@ -5,6 +5,7 @@
     using System.IO;
     using System.Threading.Tasks;
 
+    using CommandLine;
     using CustomERP.Data;
     using CustomERP.Data.Common;
     using CustomERP.Data.Common.Repositories;
@@ -13,9 +14,6 @@
     using CustomERP.Data.Seeding;
     using CustomERP.Services.Data;
     using CustomERP.Services.Messaging;
-
-    using CommandLine;
-
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;

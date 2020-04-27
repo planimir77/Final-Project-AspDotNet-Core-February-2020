@@ -1,4 +1,4 @@
-﻿@model CustomERP.Web.ViewModels.Administration.Accounts.EmployeeDetailsViewModel;
+﻿@model CustomERP.Web.ViewModels.Administration.Employees.EmployeeDetailsViewModel;
 @{
     ViewData["Title"] = "Details";
     var managerOf = this.Model.ApplicationUserManagers.ToList();
@@ -75,7 +75,7 @@
                                             @foreach (var employee in managerOf)
                                             {
                                                 <div>
-                                                    <a class="btn dt2 p-0 text-nowrap" asp-controller="Accounts" asp-action="Details" asp-route-id="@employee.Id" title="@employee.FullName">@employee.FullName</a>
+                                                    <a class="btn dt2 p-0 text-nowrap" asp-controller="Employees" asp-action="Details" asp-route-id="@employee.Id" title="@employee.FullName">@employee.FullName</a>
                                                 </div>
                                             }
                                         </div>

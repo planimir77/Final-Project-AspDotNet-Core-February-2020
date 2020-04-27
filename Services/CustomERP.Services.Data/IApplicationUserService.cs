@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using CustomERP.Web.ViewModels.Administration.Accounts;
+    using CustomERP.Web.ViewModels.Administration.Employees;
 
     public interface IApplicationUserService
     {

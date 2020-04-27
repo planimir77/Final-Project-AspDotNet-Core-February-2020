@@ -1,13 +1,13 @@
 ﻿@using System.Globalization
-@using CustomERP.Web.ViewModels.Administration.Accounts
-@model CustomERP.Web.ViewModels.Administration.Accounts.IndexViewModel
+@using CustomERP.Web.ViewModels.Administration.Employees
+@model CustomERP.Web.ViewModels.Administration.Employees.IndexViewModel
 @{
     this.ViewData["Title"] = "Admin page";
     var tableHeadData = new IndexEmployeeViewModel();
     var message = TempData["MessageContent"]?.ToString();
 }
 
-<a class="btn btn-success bigger-div btn-group-lg border-dark" asp-area="Administration" asp-controller="Accounts" asp-action="RegisterEmployee" title="Register New Employee">
+<a class="btn btn-success bigger-div btn-group-lg border-dark" asp-area="Administration" asp-controller="Employees" asp-action="Register" title="Register New Employee">
     <i class="fas fa-user"></i>
     &nbsp;
     <i class="fas fa-plus"></i>

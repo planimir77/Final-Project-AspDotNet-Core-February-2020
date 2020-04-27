@@ -5,12 +5,12 @@
 
     using CustomERP.Data.Models;
     using CustomERP.Services.Data;
-    using CustomERP.Web.ViewModels.Administration.Accounts;
+    using CustomERP.Web.ViewModels.Administration.Employees;
     using CustomERP.Web.ViewModels.Shared;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
-    public class AccountsController : AdministrationController
+    public class EmployeesController : AdministrationController
     {
         private const string EmployeeExist = "Тhe employee already exists in the database";
         private const string NotBeenSaved = " not been saved, try again!";
@@ -23,7 +23,7 @@
         private readonly IShiftsService shiftService;
         private readonly UserManager<ApplicationUser> userManager;
 
-        public AccountsController(
+        public EmployeesController(
             IApplicationUserService userService,
             ICompaniesService companiesService,
             ISectionsService sectionsService,
@@ -37,7 +37,7 @@
             this.userManager = userManager;
         }
 
-        // GET: Administration/Accounts/Index
+        // GET: Administration/Employees/Index
         [HttpGet]
         public IActionResult Index()
         {
@@ -51,7 +51,7 @@
             return this.View(viewModel);
         }
 
-        // GET: Administration/Accounts/Details/id
+        // GET: Administration/Employees/Details/id
         public IActionResult Details(string id, string message = "")
         {
             if (string.IsNullOrWhiteSpace(id))
@@ -75,8 +75,8 @@
             return this.View(viewModel);
         }
 
-        // GET: Administration/Accounts/RegisterEmployee
-        public IActionResult RegisterEmployee()
+        // GET: Administration/Employees/RegisterEmployee
+        public IActionResult Register()
         {
             var companies =
                 this.companiesService
@@ -109,10 +109,10 @@
             return this.View(viewModel);
         }
 
-        // POST:  Administration/Accounts/RegisterEmployee
+        // POST:  Administration/Employees/RegisterEmployee
         [HttpPost]
 
-        public async Task<IActionResult> RegisterEmployee(EmployeeRegisterViewModel inputModel)
+        public async Task<IActionResult> Register(EmployeeRegisterViewModel inputModel)
         {
             if (!this.ModelState.IsValid)
             {
@@ -130,12 +130,12 @@
                 return this.RedirectToAction(nameof(this.Details), new { id = userId });
             }
 
-            var messageContent = EmployeeExist;
+            const string messageContent = EmployeeExist;
 
-            return this.RedirectToAction("Details", "Accounts", new { id = existingЕmployeeId, message = messageContent });
+            return this.RedirectToAction("Details", "Employees", new { id = existingЕmployeeId, message = messageContent });
         }
 
-        // GET: Administration/Accounts/Edit/id
+        // GET: Administration/Employees/Edit/id
         public IActionResult Edit(string id)
         {
             var companies =
@@ -164,10 +164,10 @@
             return this.View(viewModel);
         }
 
-        // Post: Administration/Accounts/Edit/
+        // Post: Administration/Employees/Edit/
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditAsync(EmployeeEditInputModel inputModel)
+        public async Task<IActionResult> Edit(EmployeeEditInputModel inputModel)
         {
             if (!this.ModelState.IsValid)
             {
@@ -181,17 +181,17 @@
 
             var messageContent = SuccessfullyUpdated;
 
-            return this.RedirectToAction("Details", "Accounts", new { id = userId, message = messageContent });
+            return this.RedirectToAction("Details", "Employees", new { id = userId, message = messageContent });
         }
 
-        // Get: Administration/Accounts/Delete/id
+        // Get: Administration/Employees/Delete/id
         [HttpGet]
         public async Task<IActionResult> Delete(string id)
         {
             return await this.DeleteAsync(id);
         }
 
-        // Post: Administration/Accounts/DeleteAsync/id
+        // Post: Administration/Employees/DeleteAsync/id
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteAsync(string id)
@@ -206,7 +206,7 @@
 
             this.TempData["MessageContent"] = SuccessfullyDelete + name;
 
-            return this.RedirectToAction("Index", "Accounts");
+            return this.RedirectToAction("Index", "Employees");
         }
     }
 }

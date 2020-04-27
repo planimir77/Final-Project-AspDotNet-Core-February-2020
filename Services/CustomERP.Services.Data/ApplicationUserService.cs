@@ -7,7 +7,7 @@
     using CustomERP.Data.Common.Repositories;
     using CustomERP.Data.Models;
     using CustomERP.Services.Mapping;
-    using CustomERP.Web.ViewModels.Administration.Accounts;
+    using CustomERP.Web.ViewModels.Administration.Employees;
 
     public class ApplicationUserService : IApplicationUserService
     {

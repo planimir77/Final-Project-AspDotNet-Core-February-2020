@@ -1,4 +1,4 @@
-﻿namespace CustomERP.Web.ViewModels.Administration.Accounts
+﻿namespace CustomERP.Web.ViewModels.Administration.Employees
 {
     using System;
     using System.ComponentModel.DataAnnotations;
