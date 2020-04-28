@@ -20,11 +20,16 @@ body {
     /* Margin bottom by footer height */
     /*background-color: #ffaf00;
     background-color: rgba(255, 175, 0, 0.20);*/
+    
     padding-bottom: 60px;
     position: relative;
 }
 
-.footer {
+.qwer {
+    min-height: 100%;
+}
+
+footer {
     position: absolute;
     bottom: 0;
     width: 100%;

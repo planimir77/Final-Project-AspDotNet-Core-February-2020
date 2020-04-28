@@ -24,7 +24,7 @@
             {
                 FullName = employee.FullName,
                 Position = employee.Position,
-                ShiftId = employee.ShiftId,
+                TeamId = employee.TeamId,
                 AddressId = employee.AddressId,
                 SectionId = employee.SectionId,
                 CompanyId = employee.CompanyId,
@@ -77,7 +77,7 @@
             {
                 user.FullName = inputModel.FullName;
                 user.Position = inputModel.Position;
-                user.ShiftId = inputModel.ShiftId;
+                user.TeamId = inputModel.TeamId;
                 user.AddressId = inputModel.AddressId;
                 user.SectionId = inputModel.SectionId;
                 user.CompanyId = inputModel.CompanyId;

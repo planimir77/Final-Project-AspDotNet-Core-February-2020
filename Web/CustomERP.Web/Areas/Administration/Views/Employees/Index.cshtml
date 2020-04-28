@@ -24,7 +24,7 @@
             <tr>
                 <th><label asp-for="@tableHeadData.FullName"></label></th>
                 <th><label asp-for="@tableHeadData.Position"></label></th>
-                <th><label asp-for="@tableHeadData.ShiftName"></label></th>
+                <th><label asp-for="@tableHeadData.TeamName"></label></th>
                 <th><label asp-for="@tableHeadData.SectionName"></label></th>
                 <th><label asp-for="@tableHeadData.CompanyName"></label></th>
                 <th><label asp-for="@tableHeadData.ApplicationUserManagerFullName"></label></th>
@@ -46,7 +46,7 @@
                             <a class="nav-link" style="text-decoration: none" title="Details" asp-action="Details" asp-route-id="@user.Id">@user.FullName</a>
                         </td>
                         <td>@user.Position</td>
-                        <td>@user.ShiftName</td>
+                        <td>@user.TeamName</td>
                         <td>@user.SectionName</td>
                         <td>@user.CompanyName</td>
                         <td title="@user.ApplicationUserManagerFullName">@user.ApplicationUserManagerFullName</td>

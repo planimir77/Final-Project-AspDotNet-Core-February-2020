@@ -6,7 +6,7 @@
 
     var sections = this.Model.Sections.Select(x => new SelectListItem(x.Name, x.Id.ToString()));
 
-    var shifts = this.Model.Shifts.Select(x => new SelectListItem(x.Name, x.Id.ToString()));
+    var shifts = this.Model.Teams.Select(x => new SelectListItem(x.Name, x.Id.ToString()));
 
     var users = this.Model.ApplicationUsers.Select(x => new SelectListItem(x.FullName, x.Id));
 }
@@ -37,8 +37,8 @@
                     <input asp-for="Position" class="form-control" />
                 </div>
                 <div class="form-group">
-                    <label asp-for="ShiftId"></label>
-                    <select asp-for="ShiftId" asp-items="@shifts" class="form-control"></select>
+                    <label asp-for="TeamId"></label>
+                    <select asp-for="TeamId" asp-items="@shifts" class="form-control"></select>
                 </div>
                 <div class="form-group">
                     <label asp-for="AddressId"></label>

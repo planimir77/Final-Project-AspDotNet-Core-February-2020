@@ -11,16 +11,16 @@
         private readonly ISchedulesService schedulesService;
         private readonly ICompaniesService companiesService;
         private readonly ISectionsService sectionsService;
-        private readonly IShiftsService shiftsService;
+        private readonly ITeamsService teamsService;
 
         public DashboardController(
-            IApplicationUserService applicationUserService, ISchedulesService schedulesService, ICompaniesService companiesService, ISectionsService sectionsService, IShiftsService shiftsService)
+            IApplicationUserService applicationUserService, ISchedulesService schedulesService, ICompaniesService companiesService, ISectionsService sectionsService, ITeamsService teamsService)
         {
             this.applicationUserService = applicationUserService;
             this.schedulesService = schedulesService;
             this.companiesService = companiesService;
             this.sectionsService = sectionsService;
-            this.shiftsService = shiftsService;
+            this.teamsService = teamsService;
         }
 
         public IActionResult Index()
@@ -31,7 +31,7 @@
                 SchedulesCount = this.schedulesService.GetCount(),
                 CompaniesCount = this.companiesService.GetCount(),
                 SectionsCount = this.sectionsService.GetCount(),
-                ShiftsCount = this.shiftsService.GetCount(),
+                ShiftsCount = this.teamsService.GetCount(),
             };
 
             return this.View(viewModel);

@@ -12,7 +12,7 @@ namespace CustomERP.Data.Models
         public Schedule()
         {
             this.CycleOfDays = new HashSet<ScheduleDay>();
-            this.Shifts = new HashSet<Shift>();
+            this.Teams = new HashSet<Team>();
         }
 
         [Required]
@@ -25,6 +25,6 @@ namespace CustomERP.Data.Models
         [Required]
         public virtual ICollection<ScheduleDay> CycleOfDays { get; set; }
 
-        public virtual ICollection<Shift> Shifts { get; set; }
+        public virtual ICollection<Team> Teams { get; set; }
     }
 }

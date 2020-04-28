@@ -20,20 +20,20 @@
         private readonly IApplicationUserService userService;
         private readonly ICompaniesService companiesService;
         private readonly ISectionsService sectionsService;
-        private readonly IShiftsService shiftService;
+        private readonly ITeamsService teamService;
         private readonly UserManager<ApplicationUser> userManager;
 
         public EmployeesController(
             IApplicationUserService userService,
             ICompaniesService companiesService,
             ISectionsService sectionsService,
-            IShiftsService shiftService,
+            ITeamsService teamService,
             UserManager<ApplicationUser> userManager)
         {
             this.userService = userService;
             this.companiesService = companiesService;
             this.sectionsService = sectionsService;
-            this.shiftService = shiftService;
+            this.teamService = teamService;
             this.userManager = userManager;
         }
 
@@ -88,10 +88,10 @@
                 .GetAll<SectionDropDownViewModel>()
                 .Prepend(new SectionDropDownViewModel() { Id = null, Name = string.Empty });
 
-            var shifts =
-                this.shiftService
-                .GetAll<ShiftDropDownViewModel>()
-                .Prepend(new ShiftDropDownViewModel() { Id = null, Name = string.Empty });
+            var teams =
+                this.teamService
+                .GetAll<TeamDropDownViewModel>()
+                .Prepend(new TeamDropDownViewModel() { Id = null, Name = string.Empty });
 
             var users =
                 this.userService
@@ -102,7 +102,7 @@
             {
                 Companies = companies,
                 Sections = sections,
-                Shifts = shifts,
+                Teams = teams,
                 ApplicationUsers = users,
             };
 
@@ -146,9 +146,9 @@
                 this.sectionsService
                     .GetAll<SectionDropDownViewModel>();
 
-            var shifts =
-                this.shiftService
-                    .GetAll<ShiftDropDownViewModel>();
+            var teams =
+                this.teamService
+                    .GetAll<TeamDropDownViewModel>();
 
             var users =
                 this.userService
@@ -159,7 +159,7 @@
             viewModel.ApplicationUsers = users;
             viewModel.Companies = companies;
             viewModel.Sections = sections;
-            viewModel.Shifts = shifts;
+            viewModel.Teams = teams;
 
             return this.View(viewModel);
         }

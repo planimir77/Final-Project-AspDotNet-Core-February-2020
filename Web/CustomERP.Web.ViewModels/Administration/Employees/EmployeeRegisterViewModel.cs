@@ -22,10 +22,10 @@
         [MaxLength(20)]
         public string Position { get; set; }
 
-        [Display(Name = "Shift")]
-        public int? ShiftId { get; set; }
+        [Display(Name = "Team")]
+        public int? TeamId { get; set; }
 
-        public IEnumerable<ShiftDropDownViewModel> Shifts { get; set; }
+        public IEnumerable<TeamDropDownViewModel> Teams { get; set; }
 
         public int? AddressId { get; set; }
 

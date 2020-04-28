@@ -22,7 +22,7 @@
         [MaxLength(20)]
         public string Position { get; set; }
 
-        public int? ShiftId { get; set; }
+        public int? TeamId { get; set; }
 
         public int? AddressId { get; set; }
 

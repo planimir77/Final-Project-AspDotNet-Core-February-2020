@@ -42,7 +42,7 @@
                 defaultValue: 0);
 
             migrationBuilder.AddColumn<int>(
-                name: "ShiftId",
+                name: "TeamId",
                 table: "AspNetUsers",
                 nullable: true);
 
@@ -146,7 +146,7 @@
                 });
 
             migrationBuilder.CreateTable(
-                name: "Shifts",
+                name: "Teams",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -163,9 +163,9 @@
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Shifts", x => x.Id);
+                    table.PrimaryKey("PK_Teams", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Shifts_Schedules_ScheduleId",
+                        name: "FK_Teams_Schedules_ScheduleId",
                         column: x => x.ScheduleId,
                         principalTable: "Schedules",
                         principalColumn: "Id",
@@ -196,9 +196,9 @@
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetUsers_ShiftId",
+                name: "IX_AspNetUsers_TeamId",
                 table: "AspNetUsers",
-                column: "ShiftId");
+                column: "TeamId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Departments_IsDeleted",
@@ -221,26 +221,26 @@
                 column: "IsDeleted");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Shifts_IsDeleted",
-                table: "Shifts",
+                name: "IX_Teams_IsDeleted",
+                table: "Teams",
                 column: "IsDeleted");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Shifts_Name",
-                table: "Shifts",
+                name: "IX_Teams_Name",
+                table: "Teams",
                 column: "Name",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Shifts_ScheduleId",
-                table: "Shifts",
+                name: "IX_Teams_ScheduleId",
+                table: "Teams",
                 column: "ScheduleId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_AspNetUsers_Shifts_ShiftId",
+                name: "FK_AspNetUsers_Teams_TeamId",
                 table: "AspNetUsers",
-                column: "ShiftId",
-                principalTable: "Shifts",
+                column: "TeamId",
+                principalTable: "Teams",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Restrict);
 
@@ -256,7 +256,7 @@
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_AspNetUsers_Shifts_ShiftId",
+                name: "FK_AspNetUsers_Teams_TeamId",
                 table: "AspNetUsers");
 
             migrationBuilder.DropForeignKey(
@@ -270,7 +270,7 @@
                 name: "ScheduleDays");
 
             migrationBuilder.DropTable(
-                name: "Shifts");
+                name: "Teams");
 
             migrationBuilder.DropTable(
                 name: "Schedules");
@@ -292,7 +292,7 @@
                 table: "AspNetUsers");
 
             migrationBuilder.DropIndex(
-                name: "IX_AspNetUsers_ShiftId",
+                name: "IX_AspNetUsers_TeamId",
                 table: "AspNetUsers");
 
             migrationBuilder.DropColumn(
@@ -300,7 +300,7 @@
                 table: "Sections");
 
             migrationBuilder.DropColumn(
-                name: "ShiftId",
+                name: "TeamId",
                 table: "AspNetUsers");
 
             migrationBuilder.AlterColumn<string>(

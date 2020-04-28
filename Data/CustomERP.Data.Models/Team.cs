@@ -5,9 +5,9 @@
 
     using CustomERP.Data.Common.Models;
 
-    public class Shift : BaseDeletableModel<int>
+    public class Team : BaseDeletableModel<int>
     {
-        public Shift()
+        public Team()
         {
             // ReSharper disable once VirtualMemberCallInConstructor
             this.Employees = new HashSet<ApplicationUser>();

@@ -249,7 +249,7 @@ namespace CustomERP.Data.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ShiftId")
+                    b.Property<int?>("TeamId")
                         .HasColumnType("int");
 
                     b.Property<bool>("TwoFactorEnabled")
@@ -282,7 +282,7 @@ namespace CustomERP.Data.Migrations
 
                     b.HasIndex("SectionId");
 
-                    b.HasIndex("ShiftId");
+                    b.HasIndex("TeamId");
 
                     b.ToTable("AspNetUsers");
                 });
@@ -651,7 +651,7 @@ namespace CustomERP.Data.Migrations
                     b.ToTable("Settings");
                 });
 
-            modelBuilder.Entity("CustomERP.Data.Models.Shift", b =>
+            modelBuilder.Entity("CustomERP.Data.Models.Team", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -697,7 +697,7 @@ namespace CustomERP.Data.Migrations
 
                     b.HasIndex("ScheduleId");
 
-                    b.ToTable("Shifts");
+                    b.ToTable("Teams");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -826,9 +826,9 @@ namespace CustomERP.Data.Migrations
                         .HasForeignKey("SectionId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("CustomERP.Data.Models.Shift", "Shift")
+                    b.HasOne("CustomERP.Data.Models.Team", "Team")
                         .WithMany("Employees")
-                        .HasForeignKey("ShiftId")
+                        .HasForeignKey("TeamId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
@@ -867,10 +867,10 @@ namespace CustomERP.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
-            modelBuilder.Entity("CustomERP.Data.Models.Shift", b =>
+            modelBuilder.Entity("CustomERP.Data.Models.Team", b =>
                 {
                     b.HasOne("CustomERP.Data.Models.Schedule", "Schedule")
-                        .WithMany("Shifts")
+                        .WithMany("Teams")
                         .HasForeignKey("ScheduleId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();

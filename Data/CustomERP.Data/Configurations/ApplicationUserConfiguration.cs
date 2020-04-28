@@ -67,9 +67,9 @@
                 .IsRequired(false)
                 .OnDelete(DeleteBehavior.Restrict);
             builder
-                .HasOne(e => e.Shift)
+                .HasOne(e => e.Team)
                 .WithMany(e => e.Employees)
-                .HasForeignKey(e => e.ShiftId)
+                .HasForeignKey(e => e.TeamId)
                 .IsRequired(false)
                 .OnDelete(DeleteBehavior.Restrict);
             builder

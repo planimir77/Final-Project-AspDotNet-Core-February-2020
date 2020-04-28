@@ -3,7 +3,7 @@
     using CustomERP.Data.Models;
     using CustomERP.Services.Mapping;
 
-    public class ShiftDropDownViewModel : IMapFrom<Shift>
+    public class TeamDropDownViewModel : IMapFrom<Team>
     {
         public int? Id { get; set; }
 

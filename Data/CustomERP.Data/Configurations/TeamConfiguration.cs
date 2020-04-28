@@ -4,9 +4,9 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-    public class ShiftConfiguration : IEntityTypeConfiguration<Shift>
+    public class TeamConfiguration : IEntityTypeConfiguration<Team>
     {
-        public void Configure(EntityTypeBuilder<Shift> builder)
+        public void Configure(EntityTypeBuilder<Team> builder)
         {
             builder
                 .HasIndex(e => e.Name)
@@ -20,8 +20,8 @@
 
             builder
                 .HasMany(e => e.Employees)
-                .WithOne(e => e.Shift)
-                .HasForeignKey(e => e.ShiftId)
+                .WithOne(e => e.Team)
+                .HasForeignKey(e => e.TeamId)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }

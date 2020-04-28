@@ -63,7 +63,7 @@
             services.AddTransient<ICompaniesService, CompaniesService>();
             services.AddTransient<IDepartmentsService, DepartmentsService>();
             services.AddTransient<ISectionsService, SectionsService>();
-            services.AddTransient<IShiftsService, ShiftsService>();
+            services.AddTransient<ITeamsService, TeamsService>();
             services.AddTransient<ISchedulesService, SchedulesService>();
         }
 

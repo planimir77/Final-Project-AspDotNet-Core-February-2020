@@ -38,7 +38,7 @@
 
         public DbSet<Setting> Settings { get; set; }
 
-        public DbSet<Shift> Shifts { get; set; }
+        public DbSet<Team> Teams { get; set; }
 
         public DbSet<ScheduleDay> ScheduleDays { get; set; }
 
@@ -107,7 +107,7 @@
             builder.ApplyConfiguration(new SectionConfiguration());
             builder.ApplyConfiguration(new DepartmentConfiguration());
             builder.ApplyConfiguration(new ScheduleConfiguration());
-            builder.ApplyConfiguration(new ShiftConfiguration());
+            builder.ApplyConfiguration(new TeamConfiguration());
             builder.ApplyConfiguration(new ScheduleDayConfiguration());
         }
 

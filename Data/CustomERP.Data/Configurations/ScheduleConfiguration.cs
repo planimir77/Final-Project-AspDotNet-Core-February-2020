@@ -15,7 +15,7 @@
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Restrict);
             builder
-                .HasMany(e => e.Shifts)
+                .HasMany(e => e.Teams)
                 .WithOne(e => e.Schedule)
                 .HasForeignKey(e => e.ScheduleId)
                 .IsRequired()

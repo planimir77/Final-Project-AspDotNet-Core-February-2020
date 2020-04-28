@@ -16,8 +16,8 @@
         [Display(Name = "Position")]
         public string Position { get; set; }
 
-        [Display(Name = "Shift")]
-        public string ShiftName { get; set; }
+        [Display(Name = "Team")]
+        public string TeamName { get; set; }
 
         [Display(Name = "Created")]
         [DataType(customDataType: nameof(From))]

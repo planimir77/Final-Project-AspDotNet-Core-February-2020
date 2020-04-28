@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    public interface IShiftsService
+    public interface ITeamsService
     {
         int GetCount();
 

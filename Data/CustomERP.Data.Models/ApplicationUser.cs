@@ -29,9 +29,9 @@ namespace CustomERP.Data.Models
         [Required]
         public string Position { get; set; }
 
-        public int? ShiftId { get; set; }
+        public int? TeamId { get; set; }
 
-        public virtual Shift Shift { get; set; }
+        public virtual Team Team { get; set; }
 
         // Audit info
         public string CreatedFrom { get; set; }
