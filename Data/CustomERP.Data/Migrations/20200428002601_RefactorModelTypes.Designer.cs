@@ -3,14 +3,15 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CustomERP.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    // ReSharper disable once PartialTypeWithSinglePart
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200428002601_RefactorModelTypes")]
+    partial class RefactorModelTypes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,13 +30,13 @@ namespace CustomERP.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50)
-                        .IsUnicode();
+                        .IsUnicode(true);
 
                     b.Property<string>("Country")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50)
-                        .IsUnicode();
+                        .IsUnicode(true);
 
                     b.Property<string>("CreatedFrom")
                         .HasColumnType("nvarchar(max)");
@@ -52,7 +53,7 @@ namespace CustomERP.Data.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(300)")
                         .HasMaxLength(300)
-                        .IsUnicode();
+                        .IsUnicode(true);
 
                     b.Property<int?>("Floor")
                         .HasColumnType("int")
@@ -74,19 +75,19 @@ namespace CustomERP.Data.Migrations
                     b.Property<string>("Room")
                         .HasColumnType("nvarchar(6)")
                         .HasMaxLength(6)
-                        .IsUnicode();
+                        .IsUnicode(true);
 
                     b.Property<string>("Street")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50)
-                        .IsUnicode();
+                        .IsUnicode(true);
 
                     b.Property<string>("StreetNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(4)")
                         .HasMaxLength(4)
-                        .IsUnicode();
+                        .IsUnicode(true);
 
                     b.HasKey("Id");
 
@@ -108,7 +109,7 @@ namespace CustomERP.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50)
-                        .IsUnicode();
+                        .IsUnicode(true);
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -116,7 +117,7 @@ namespace CustomERP.Data.Migrations
                     b.Property<string>("DeletedFrom")
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50)
-                        .IsUnicode();
+                        .IsUnicode(true);
 
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
@@ -127,7 +128,7 @@ namespace CustomERP.Data.Migrations
                     b.Property<string>("ModifiedFrom")
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50)
-                        .IsUnicode();
+                        .IsUnicode(true);
 
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
@@ -174,7 +175,7 @@ namespace CustomERP.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(40)")
                         .HasMaxLength(40)
-                        .IsUnicode();
+                        .IsUnicode(true);
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -182,7 +183,7 @@ namespace CustomERP.Data.Migrations
                     b.Property<string>("DeletedFrom")
                         .HasColumnType("nvarchar(40)")
                         .HasMaxLength(40)
-                        .IsUnicode();
+                        .IsUnicode(true);
 
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
@@ -198,7 +199,7 @@ namespace CustomERP.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100)
-                        .IsUnicode();
+                        .IsUnicode(true);
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -215,7 +216,7 @@ namespace CustomERP.Data.Migrations
                     b.Property<string>("ModifiedFrom")
                         .HasColumnType("nvarchar(40)")
                         .HasMaxLength(40)
-                        .IsUnicode();
+                        .IsUnicode(true);
 
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
@@ -241,7 +242,7 @@ namespace CustomERP.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100)
-                        .IsUnicode();
+                        .IsUnicode(true);
 
                     b.Property<int?>("SectionId")
                         .HasColumnType("int");
@@ -320,7 +321,7 @@ namespace CustomERP.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50)
-                        .IsUnicode();
+                        .IsUnicode(true);
 
                     b.HasKey("Id");
 
@@ -366,7 +367,7 @@ namespace CustomERP.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50)
-                        .IsUnicode();
+                        .IsUnicode(true);
 
                     b.HasKey("Id");
 
@@ -399,7 +400,7 @@ namespace CustomERP.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50)
-                        .IsUnicode();
+                        .IsUnicode(true);
 
                     b.Property<string>("DeletedFrom")
                         .HasColumnType("nvarchar(max)");
@@ -410,7 +411,7 @@ namespace CustomERP.Data.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(200)")
                         .HasMaxLength(200)
-                        .IsUnicode();
+                        .IsUnicode(true);
 
                     b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
@@ -438,7 +439,7 @@ namespace CustomERP.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50)
-                        .IsUnicode();
+                        .IsUnicode(true);
 
                     b.HasKey("Id");
 
@@ -555,7 +556,7 @@ namespace CustomERP.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(40)")
                         .HasMaxLength(40)
-                        .IsUnicode();
+                        .IsUnicode(true);
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -563,7 +564,7 @@ namespace CustomERP.Data.Migrations
                     b.Property<string>("DeletedFrom")
                         .HasColumnType("nvarchar(40)")
                         .HasMaxLength(40)
-                        .IsUnicode();
+                        .IsUnicode(true);
 
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
@@ -577,7 +578,7 @@ namespace CustomERP.Data.Migrations
                     b.Property<string>("ModifiedFrom")
                         .HasColumnType("nvarchar(40)")
                         .HasMaxLength(40)
-                        .IsUnicode();
+                        .IsUnicode(true);
 
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
@@ -586,7 +587,7 @@ namespace CustomERP.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50)
-                        .IsUnicode();
+                        .IsUnicode(true);
 
                     b.Property<int?>("OrderId")
                         .HasColumnType("int");
@@ -683,7 +684,7 @@ namespace CustomERP.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(20)")
                         .HasMaxLength(20)
-                        .IsUnicode();
+                        .IsUnicode(true);
 
                     b.Property<int>("ScheduleId")
                         .HasColumnType("int");
