@@ -40,7 +40,7 @@
 
         public DbSet<Shift> Shifts { get; set; }
 
-        public DbSet<ShiftDay> ShiftDays { get; set; }
+        public DbSet<ScheduleDay> ScheduleDays { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 
@@ -108,7 +108,7 @@
             builder.ApplyConfiguration(new DepartmentConfiguration());
             builder.ApplyConfiguration(new ScheduleConfiguration());
             builder.ApplyConfiguration(new ShiftConfiguration());
-            builder.ApplyConfiguration(new ShiftDayConfiguration());
+            builder.ApplyConfiguration(new ScheduleDayConfiguration());
         }
 
         private void ApplyAuditInfoRules()

@@ -5,7 +5,7 @@
 
     using CustomERP.Data.Common.Models;
 
-    public class ShiftDay : BaseDeletableModel<int>
+    public class ScheduleDay : BaseDeletableModel<int>
     {
         [Required]
         public int Name { get; set; }
@@ -21,7 +21,6 @@
         [Range(0, 60)]
         public int? IncludingRest { get; set; }
 
-        [Required]
         public int ScheduleId { get; set; }
 
         public Schedule Schedule { get; set; }
