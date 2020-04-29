@@ -7,60 +7,63 @@
     var message = TempData["MessageContent"]?.ToString();
 }
 
-<a class="btn btn-success bigger-div btn-group-lg border-dark" asp-area="Administration" asp-controller="Employees" asp-action="Register" title="Register New Employee">
-    <i class="fas fa-user"></i>
-    &nbsp;
-    <i class="fas fa-plus"></i>
-</a>
-<hr />
-@if (!string.IsNullOrWhiteSpace(message))
-{
-    <h4 class="text-warning">@message</h4>
-    <br />
-}
-<div class="table-responsive">
-    <table class="table table-sm table-striped table-hover table-bordered border-light w-auto">
-        <thead>
-            <tr>
-                <th><label asp-for="@tableHeadData.FullName"></label></th>
-                <th><label asp-for="@tableHeadData.Position"></label></th>
-                <th><label asp-for="@tableHeadData.TeamName"></label></th>
-                <th><label asp-for="@tableHeadData.SectionName"></label></th>
-                <th><label asp-for="@tableHeadData.CompanyName"></label></th>
-                <th><label asp-for="@tableHeadData.ApplicationUserManagerFullName"></label></th>
-                <th><label asp-for="@tableHeadData.CreatedOn"></label></th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @if (Model.Users == null)
-            {
-                <tr><td class="text-center" colspan="6"><h4>No records found !</h4></td></tr>
-            }
-            else
-            {
-                foreach (var user in Model.Users)
+<div class="container">
+    <a class="btn btn-success bigger-div btn-group-lg border-dark" asp-area="Administration" asp-controller="Employees" asp-action="Register" title="Register New Employee">
+        <i class="fas fa-user"></i>
+        &nbsp;
+        <i class="fas fa-plus"></i>
+    </a>
+    <hr />
+    @if (!string.IsNullOrWhiteSpace(message))
+    {
+        <h4 class="text-warning">@message</h4>
+        <br />
+    }
+    <div class="table-responsive">
+        <table class="table table-sm table-striped table-hover table-bordered border-light w-auto">
+            <thead>
+                <tr>
+                    <th><label asp-for="@tableHeadData.FullName"></label></th>
+                    <th><label asp-for="@tableHeadData.Position"></label></th>
+                    <th><label asp-for="@tableHeadData.TeamName"></label></th>
+                    <th><label asp-for="@tableHeadData.SectionName"></label></th>
+                    <th><label asp-for="@tableHeadData.CompanyName"></label></th>
+                    <th><label asp-for="@tableHeadData.ApplicationUserManagerFullName"></label></th>
+                    <th><label asp-for="@tableHeadData.CreatedOn"></label></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Users == null)
                 {
-                    <tr>
-                        <td style="white-space: nowrap">
-                            <a class="nav-link" style="text-decoration: none" title="Details" asp-action="Details" asp-route-id="@user.Id">@user.FullName</a>
-                        </td>
-                        <td>@user.Position</td>
-                        <td>@user.TeamName</td>
-                        <td>@user.SectionName</td>
-                        <td>@user.CompanyName</td>
-                        <td title="@user.ApplicationUserManagerFullName">@user.ApplicationUserManagerFullName</td>
-                        <td>@user.CreatedOn.ToString("D", CultureInfo.CurrentCulture)</td>
-                        <td style="white-space: nowrap">
-                            <a class="btn btn-success"><i class="fas fa-check"></i></a>
-                            <a class="btn btn-primary" title="Edit" asp-action="Edit" asp-route-id="@user.Id"><i class="fas fa-user-edit"></i></a>
-                            <a class="btn btn-danger" title="Remove" asp-action="Delete" asp-route-id="@user.Id"><i class="fas fa-trash-alt "></i></a>
-                        </td>
-                    </tr>
+                    <tr><td class="text-center" colspan="6"><h4>No records found !</h4></td></tr>
                 }
-            }
+                else
+                {
+                    foreach (var user in Model.Users)
+                    {
+                        <tr>
+                            <td style="white-space: nowrap">
+                                <a class="nav-link" style="text-decoration: none" title="Details" asp-action="Details" asp-route-id="@user.Id">@user.FullName</a>
+                            </td>
+                            <td>@user.Position</td>
+                            <td>@user.TeamName</td>
+                            <td>@user.SectionName</td>
+                            <td>@user.CompanyName</td>
+                            <td title="@user.ApplicationUserManagerFullName">@user.ApplicationUserManagerFullName</td>
+                            <td>@user.CreatedOn.ToString("D", CultureInfo.CurrentCulture)</td>
+                            <td style="white-space: nowrap">
+                                <a class="btn btn-success"><i class="fas fa-check"></i></a>
+                                <a class="btn btn-primary" title="Edit" asp-action="Edit" asp-route-id="@user.Id"><i class="fas fa-user-edit"></i></a>
+                                <a class="btn btn-danger" title="Remove" asp-action="Delete" asp-route-id="@user.Id"><i class="fas fa-trash-alt "></i></a>
+                            </td>
+                        </tr>
+                    }
+                }
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
+
+
 </div>
-

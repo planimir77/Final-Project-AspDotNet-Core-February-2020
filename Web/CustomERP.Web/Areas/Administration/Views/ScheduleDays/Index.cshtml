@@ -1,0 +1,70 @@
+﻿@using CustomERP.Web.ViewModels.Administration.ScheduleDays
+@model CustomERP.Web.ViewModels.Administration.ScheduleDays.ScheduleDayListViewModel
+@{
+    ViewData["Title"] = "Index";
+    var scheduleDays = Model.ScheduleDaysViewModels.Count();
+    var numberOfDays = Model.ScheduleInfo.NumberOfDays;
+    var columnHeading = new ScheduleDayViewModel();
+}
+
+<div class="container">
+    <h1>@Model.ScheduleInfo.Name</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(x => columnHeading.DayName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(x => columnHeading.WorkingMode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(x => columnHeading.Begins)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(x => columnHeading.Duration)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(x => columnHeading.IncludingRest)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ScheduleDaysViewModels)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DayName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.WorkingMode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Begins)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Duration)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IncludingRest)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @if (scheduleDays < numberOfDays)
+    {
+        <p>
+            <a class="btn btn-success" asp-action="Create" asp-route-id="@Model.ScheduleId">Add day&nbsp;&nbsp;<i class="fa-align-left fas fa-plus"></i></a>
+        </p>
+    }
+</div>
+

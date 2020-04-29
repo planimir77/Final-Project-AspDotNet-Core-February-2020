@@ -14,7 +14,7 @@
         public int CompaniesCount { get; set; }
 
         [Display(Name = "Teams")]
-        public int ShiftsCount { get; set; }
+        public int TeamsCount { get; set; }
 
         [Display(Name = "Schedules")]
         public int SchedulesCount { get; set; }

@@ -1,0 +1,37 @@
+﻿@model CustomERP.Web.ViewModels.Administration.Schedules.SchedulesViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h1>Details</h1>
+            <h4>Schedule</h4>
+        </div>
+        <div class="container">
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.NumberOfDays)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.NumberOfDays)
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="col">
+        <a asp-action="Index"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Back to List</a>&nbsp;|&nbsp;
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit&nbsp;&nbsp;<i class="far fa-edit"></i></a>
+    </div>
+</div>
+

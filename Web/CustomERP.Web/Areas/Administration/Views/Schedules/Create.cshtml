@@ -1,0 +1,53 @@
+﻿@model CustomERP.Web.ViewModels.Administration.Schedules.ScheduleCreateViewModel
+@{
+    ViewData["Title"] = "Create";
+    var dropDownNumbers = Enumerable.Range(1, 31)
+        .Select(x => new SelectListItem
+        {
+            Value = x.ToString(),
+            Text = x.ToString(),
+        });
+}
+
+<div class="container">
+
+    <h1>Create</h1>
+
+    <h4>Schedule</h4>
+    <hr/>
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Name" class=""></label>
+                    <input asp-for="Name" class="form-control" />
+                    @if (this.TempData["Message"] != null)
+                    {
+                        <div class="alert alert-danger text-danger" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <strong>@TempData["Message"]</strong>
+                        </div> 
+                    }
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NumberOfDays" class=""></label>
+                    <select asp-for="NumberOfDays" asp-items="dropDownNumbers" class="form-control"></select>
+                    <span asp-validation-for="NumberOfDays" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary"/>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

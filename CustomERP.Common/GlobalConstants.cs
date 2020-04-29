@@ -16,5 +16,10 @@
             public const string ProductionWorker = "ProductionWorker";
             public const string WarehouseWorker = "WarehouseWorker";
         }
+
+        public static class Messages
+        {
+            public const string AlreadyExist = "Already exist";
+        }
     }
 }
