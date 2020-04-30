@@ -1,11 +1,13 @@
 ﻿@using CustomERP.Data.Models
-@model CustomERP.Web.ViewModels.Administration.ScheduleDays.CreateViewModel
+@model CustomERP.Web.ViewModels.Administration.ScheduleDays.ScheduleDayCreateViewModel
 
 @{
     ViewData["Title"] = "Create";
-    var names = this.Model.ScheduleDayNames.Select(x => new SelectListItem(x.DayName, x.Name.ToString()));
+    var names = this.Model.ScheduleDayNames
+        .Select(x => new SelectListItem(x.DayName, x.Name.ToString()));
 
-    var mode = Enum.GetValues(typeof(Mode)).Cast<Mode>().Select(v => new SelectListItem
+    var mode = Enum.GetValues(typeof(Mode)).Cast<Mode>()
+        .Select(v => new SelectListItem
     {
         Text = v.ToString(),
         Value = ((int)v).ToString()
@@ -28,74 +30,76 @@
         });
 }
 
-<h1>Create new</h1>
+<div class="container">
+    <h1>Create new</h1>
 
-<h4>Day</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <select asp-for="Name" asp-items="names" class="form-control"></select>
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="WorkingMode" class="control-label"></label>
-                <select asp-for="WorkingMode" asp-items="mode" class="form-control"></select>
-                <span asp-validation-for="WorkingMode" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Begins" class="control-label"></label>
-                <select asp-for="Begins" class="form-control">
-                    <option>- choose a time -</option>
-                    @{
-                        const string zero = "0";
-                        for (var i = 0; i < 24; i++)
-                        {
-                            for (var j = 0; j <= 30; j += 30)
+    <h4>Day</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Name"></label>
+                    <select asp-for="Name" asp-items="names" class="form-control"></select>
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="WorkingMode"></label>
+                    <select asp-for="WorkingMode" asp-items="mode" class="form-control"></select>
+                    <span asp-validation-for="WorkingMode" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Begins"></label>
+                    <select asp-for="Begins" class="form-control">
+                        <option>- choose a time -</option>
+                        @{
+                            const string zero = "0";
+                            for (var i = 0; i < 24; i++)
                             {
-                                var hour = string.Empty;
-                                var min = string.Empty;
-                                if (i < 10)
+                                for (var j = 0; j <= 30; j += 30)
                                 {
-                                    hour = zero;
-                                }
+                                    var hour = string.Empty;
+                                    var min = string.Empty;
+                                    if (i < 10)
+                                    {
+                                        hour = zero;
+                                    }
 
-                                if (j < 10)
-                                {
-                                    min = zero;
+                                    if (j < 10)
+                                    {
+                                        min = zero;
+                                    }
+                                    <option>@hour@i:@j@min</option>
                                 }
-                                <option>@hour@i:@j@min</option>
                             }
                         }
-                    }
-                </select>
-                <span asp-validation-for="Begins" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Duration" class="control-label"></label>
-                <select asp-for="Duration" asp-items="duration" class="form-control"></select>
-                <span asp-validation-for="Duration" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IncludingRest" class="control-label"></label>
-                <select asp-for="IncludingRest" asp-items="rest" class="form-control"></select>
-                <span asp-validation-for="IncludingRest" class="text-danger"></span>
-            </div>
-            <div class="form-group invisible">
-                <input asp-for="ScheduleId" class="invisible">
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+                    </select>
+                    <span asp-validation-for="Begins" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Duration"></label>
+                    <select asp-for="Duration" asp-items="duration" class="form-control"></select>
+                    <span asp-validation-for="Duration" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="IncludingRest"></label>
+                    <select asp-for="IncludingRest" asp-items="rest" class="form-control"></select>
+                    <span asp-validation-for="IncludingRest" class="text-danger"></span>
+                </div>
+                <div class="form-group invisible">
+                    <input asp-for="ScheduleId" class="invisible">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success rounded">Save  <i class="far fa-save bigger-div"></i></button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
 </div>
 
 @section Scripts {

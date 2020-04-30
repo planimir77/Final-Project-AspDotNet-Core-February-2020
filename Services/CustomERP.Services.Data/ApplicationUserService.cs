@@ -40,7 +40,7 @@
 
         public int GetCount()
         {
-            return this.applicationUserRepository.All().Count();
+            return this.applicationUserRepository.All().Count(x => x.FullName != "First Created Owner");
         }
 
         public IEnumerable<T> GetAll<T>()

@@ -20,6 +20,8 @@
         public static class Messages
         {
             public const string AlreadyExist = "Already exist";
+
+            public const string InvalidOperation = "Invalid operation";
         }
     }
 }

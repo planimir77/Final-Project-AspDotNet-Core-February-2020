@@ -20,18 +20,18 @@ $("#menu-toggle").click(function(e) {
 
 });
 
+// -------- Sideanel expand --------------------------------------->
 
+//function openNav() {
+//    $("#mySidepanel").css("left", "-40px");
+//    $("#angle-double-right").removeClass("fas fa-angle-double-right");
+//    $("#angle-double-right").addClass("fas fa-angle-double-left");
 
-function openNav() {
-    $("#mySidepanel").css("left", "-40px");
-    $("#angle-double-right").removeClass("fas fa-angle-double-right");
-    $("#angle-double-right").addClass("fas fa-angle-double-left");
+//    setTimeout(function() {
+//        $("#mySidepanel").css("left","-245px");
+//        $("#angle-double-right").removeClass("fas fa-angle-double-left");
+//        $("#angle-double-right").addClass("fas fa-angle-double-right");
+//    }, 5000);
 
-    setTimeout(function() {
-        $("#mySidepanel").css("left","-245px");
-        $("#angle-double-right").removeClass("fas fa-angle-double-left");
-        $("#angle-double-right").addClass("fas fa-angle-double-right");
-    }, 5000);
-
-};
+//};
 

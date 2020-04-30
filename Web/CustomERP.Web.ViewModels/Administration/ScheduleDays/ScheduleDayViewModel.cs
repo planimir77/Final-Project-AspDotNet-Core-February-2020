@@ -28,6 +28,10 @@
         [Display(Name = "Including rest")]
         public int? IncludingRest { get; set; }
 
+        public string ScheduleName { get; set; }
+
+        public int ScheduleNumberOfDays { get; set; }
+
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<ScheduleDay, ScheduleDayViewModel>().ForMember(

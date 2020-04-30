@@ -1,7 +1,7 @@
 ﻿@model CustomERP.Web.ViewModels.Administration.Schedules.ScheduleCreateViewModel
 @{
     ViewData["Title"] = "Create";
-    var dropDownNumbers = Enumerable.Range(1, 31)
+    var dropDownNumbers = Enumerable.Range(2, 30)
         .Select(x => new SelectListItem
         {
             Value = x.ToString(),
@@ -14,7 +14,7 @@
     <h1>Create</h1>
 
     <h4>Schedule</h4>
-    <hr/>
+    <hr />
     <div class="row">
         <div class="col-md-4">
             <form asp-action="Create" method="post">
@@ -26,8 +26,8 @@
                     {
                         <div class="alert alert-danger text-danger" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <strong>@TempData["Message"]</strong>
-                        </div> 
+                            <strong class="text-black-50">@TempData["Message"]</strong>
+                        </div>
                     }
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
@@ -37,7 +37,7 @@
                     <span asp-validation-for="NumberOfDays" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary"/>
+                    <button type="submit" class="btn btn-success rounded">Save  <i class="far fa-save bigger-div"></i></button>
                 </div>
             </form>
         </div>

@@ -31,7 +31,7 @@
                 SchedulesCount = this.schedulesService.GetCount(),
                 CompaniesCount = this.companiesService.GetCount(),
                 SectionsCount = this.sectionsService.GetCount(),
-                ShiftsCount = this.teamsService.GetCount(),
+                TeamsCount = this.teamsService.GetCount(),
             };
 
             return this.View(viewModel);

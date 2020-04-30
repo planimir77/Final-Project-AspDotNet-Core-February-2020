@@ -8,17 +8,20 @@
     using CustomERP.Web.ViewModels.Administration.Schedules;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
 
+    [Area("Administration")]
     public class SchedulesController : AdministrationController
     {
         private readonly ISchedulesService schedulesService;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly IScheduleDaysService scheduleDaysService;
 
-        public SchedulesController(ISchedulesService schedulesService, UserManager<ApplicationUser> userManager)
+        public SchedulesController(
+            ISchedulesService schedulesService, UserManager<ApplicationUser> userManager, IScheduleDaysService scheduleDaysService)
         {
             this.schedulesService = schedulesService;
             this.userManager = userManager;
+            this.scheduleDaysService = scheduleDaysService;
         }
 
         // GET: Administration/Schedules
@@ -48,27 +51,24 @@
                 return this.NotFound();
             }
 
-            return View(schedule);
+            return this.View(schedule);
         }
 
         // GET: Administration/Schedules/Create
         public IActionResult Create()
         {
-            return View();
+            return this.View();
         }
 
         // POST: Administration/Schedules/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ScheduleCreateViewModel inputModel)
         {
-
-            if (this.ScheduleExists<ScheduleCreateViewModel>(inputModel.Name))
+            if (this.ScheduleExists<ScheduleCreateViewModel>(inputModel.Name, null))
             {
                 this.TempData["Message"] = GlobalConstants.Messages.AlreadyExist;
-                return View(inputModel);
+                return this.View(inputModel);
             }
 
             var name = inputModel.Name;
@@ -81,7 +81,7 @@
                 return this.RedirectToAction("Index");
             }
 
-            return View(inputModel);
+            return this.View(inputModel);
         }
 
         // GET: Administration/Schedules/Edit/5
@@ -100,21 +100,26 @@
                 return this.NotFound();
             }
 
-            return View(schedule);
+            return this.View(schedule);
         }
 
         // POST: Administration/Schedules/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(ScheduleEditViewModel model)
         {
+            var scheduleId = model.Id;
+            var scheduleName = model.Name;
             if (this.ModelState.IsValid)
             {
-                if (this.ScheduleExists<ScheduleCreateViewModel>(model.Name))
+                if (this.ScheduleExists<ScheduleCreateViewModel>(scheduleName, scheduleId))
                 {
                     this.TempData["Message"] = GlobalConstants.Messages.AlreadyExist;
+                    return this.View(model);
+                }
+                else if (model.NumberOfDays < this.ScheduleDaysCount(scheduleId))
+                {
+                    this.TempData["Message"] = GlobalConstants.Messages.InvalidOperation;
                     return this.View(model);
                 }
 
@@ -147,21 +152,28 @@
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            this.schedulesService.Delete(id);
+            await this.schedulesService.Delete(id, this.Creator());
 
             return this.RedirectToAction("Index");
         }
 
-        private bool ScheduleExists<T>(string name)
+        private bool ScheduleExists<T>(string name, int? id)
         {
-            return this.schedulesService.AnyByName<T>(name);
+            return this.schedulesService.AnyByName<T>(name, id);
         }
 
         private string Creator()
         {
             return this.userManager.GetUserAsync(this.User).Result.FullName;
+        }
+
+        private int ScheduleDaysCount(int scheduleId)
+        {
+            var scheduleDaysCount = this.scheduleDaysService
+                .GetDaysCountByScheduleId(scheduleId);
+            return scheduleDaysCount;
         }
     }
 }

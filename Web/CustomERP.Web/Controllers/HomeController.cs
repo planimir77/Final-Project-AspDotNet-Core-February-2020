@@ -1,9 +1,9 @@
 ﻿namespace CustomERP.Web.Controllers
 {
+    using System;
     using System.Diagnostics;
 
     using CustomERP.Web.ViewModels;
-
     using Microsoft.AspNetCore.Mvc;
 
     public class HomeController : BaseController
@@ -15,6 +15,7 @@
 
         public IActionResult Privacy()
         {
+            this.TempData["DateTime"] = DateTime.Now.ToLocalTime().ToString("D");
             return this.View();
         }
 

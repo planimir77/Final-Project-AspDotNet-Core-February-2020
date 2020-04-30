@@ -6,7 +6,9 @@
     {
         public int ScheduleId { get; set; }
 
-        public ScheduleInfoModel ScheduleInfo { get; set; }
+        public string Name { get; set; }
+
+        public int NumberOfDays { get; set; }
 
         public IEnumerable<ScheduleDayViewModel> ScheduleDaysViewModels { get; set; }
     }

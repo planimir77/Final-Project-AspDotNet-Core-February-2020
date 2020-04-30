@@ -1,215 +1,165 @@
-﻿//namespace CustomERP.Web.Areas.Administration.Controllers
-//{
-//    using System.Linq;
-//    using System.Threading.Tasks;
+﻿namespace CustomERP.Web.Areas.Administration.Controllers
+{
+    using System.Linq;
+    using System.Threading.Tasks;
 
-//    using CustomERP.Data;
-//    using CustomERP.Data.Common.Repositories;
-//    using CustomERP.Data.Models;
-//    using CustomERP.Services.Mapping;
-//    using CustomERP.Web.ViewModels.Administration.ScheduleDays;
-//    using Microsoft.AspNetCore.Mvc;
-//    using Microsoft.AspNetCore.Mvc.Rendering;
-//    using Microsoft.EntityFrameworkCore;
+    using CustomERP.Data.Models;
+    using CustomERP.Services.Data;
+    using CustomERP.Web.ViewModels.Administration.ScheduleDays;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
 
-//    [Area("Administration")]
-//    public class ScheduleDaysController : AdministrationController
-//    {
-//        private readonly IDeletableEntityRepository<ScheduleDay> scheduleDayRepository;
-//        private readonly IDeletableEntityRepository<Schedule> scheduleRepository;
+    [Area("Administration")]
+    public class ScheduleDaysController : AdministrationController
+    {
+        private readonly IScheduleDaysService scheduleDaysServices;
+        private readonly ISchedulesService schedulesService;
+        private readonly UserManager<ApplicationUser> userManager;
 
-//        public ScheduleDaysController(ApplicationDbContext context, IDeletableEntityRepository<ScheduleDay> scheduleDayRepository, IDeletableEntityRepository<Schedule> scheduleRepository)
-//        {
-//            this.scheduleDayRepository = scheduleDayRepository;
-//            this.scheduleRepository = scheduleRepository;
-//        }
+        public ScheduleDaysController(
+            IScheduleDaysService scheduleDaysServices, ISchedulesService schedulesService, UserManager<ApplicationUser> userManager)
+        {
+            this.scheduleDaysServices = scheduleDaysServices;
+            this.schedulesService = schedulesService;
+            this.userManager = userManager;
+        }
 
-//        // GET: Production/ScheduleDays/5
-//        public IActionResult Index(int id)
-//        {
-//            var scheduleInfo = this.scheduleRepository
-//                .All()
-//                .Where(x => x.Id == id)
-//                .To<ScheduleInfoModel>().FirstOrDefault();
+        // GET: Administration/ScheduleDays/5
+        public IActionResult Index(int id)
+        {
+            if (this.ScheduleExists(id))
+            {
+                var scheduleDays = this.scheduleDaysServices
+                    .GetAllByScheduleId<ScheduleDayViewModel>(id).ToList();
 
-//            var scheduleDays = this.scheduleDayRepository
-//                .All()
-//                .Where(x => x.ScheduleId == id)
-//                .To<ScheduleDayViewModel>();
+                var viewModel = new ScheduleDayListViewModel
+                {
+                    ScheduleId = id,
+                    Name = scheduleDays.Select(x => x.ScheduleName).FirstOrDefault(),
+                    NumberOfDays = scheduleDays
+                        .Select(x => x.ScheduleNumberOfDays)
+                        .FirstOrDefault(),
+                    ScheduleDaysViewModels = scheduleDays
+                        .OrderBy(x => x.Name),
+                };
 
-//            var viewModel = new ScheduleDayListViewModel
-//            {
-//                ScheduleId = id,
-//                ScheduleInfo = scheduleInfo,
-//                ScheduleDaysViewModels = scheduleDays
-//                    .OrderBy(x => x.Name),
-//            };
+                return this.View(viewModel);
+            }
 
-//            return this.View(viewModel);
-//        }
+            return this.RedirectToAction("Index", "Schedules");
+        }
 
-//        // GET: Production/ScheduleDays/Details/5
-//        public async Task<IActionResult> Details(int? id)
-//        {
-//            if (id == null)
-//            {
-//                return NotFound();
-//            }
+        // GET: Administration/ScheduleDays/Create
+        public IActionResult Create(int id)
+        {
+            var days = this.scheduleDaysServices.GetNamesByScheduleId(id);
 
-//            var shiftDay = await _context.ScheduleDays
-//                .Include(s => s.Schedule)
-//                .FirstOrDefaultAsync(m => m.Id == id);
-//            if (shiftDay == null)
-//            {
-//                return NotFound();
-//            }
+            var expectedDaysCount = this.schedulesService.GetNumberOfDaysById(id);
+            var scheduleDayNames = Enumerable
+                .Range(1, expectedDaysCount);
 
-//            return View(shiftDay);
-//        }
+            var emptyDays = scheduleDayNames.Except(days);
 
-//        // GET: Production/ScheduleDays/Create
-//        public IActionResult Create(int id)
-//        {
-//            var days = this.scheduleDayRepository.All().Where(x => x.ScheduleId == id).Select(x => x.Name);
+            var viewModel = new ScheduleDayCreateViewModel
+            {
+                ScheduleDayNames = emptyDays.Select(x => new DayNameDropDownViewModel
+                {
+                    Name = x,
+                }),
+                ScheduleId = id,
+            };
 
-//            var scheduleInfo = this.scheduleRepository.All()
-//                .Where(x => x.Id == id)
-//                .Select(x => new { x.Name, x.NumberOfDays })
-//                .FirstOrDefault();
+            return this.View(viewModel);
+        }
 
-//            var scheduleDayNames = Enumerable.Range(1, scheduleInfo.NumberOfDays);
+        // POST: Administration/ScheduleDays/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(ScheduleDayCreateViewModel input)
+        {
+            if (this.ModelState.IsValid)
+            {
+                var scheduleId = await this.scheduleDaysServices
+                    .CreateAsync(input, "Test");
 
-//            var emptyDays = scheduleDayNames.Except(days);
+                return this.RedirectToAction("Index", "ScheduleDays", new { id = scheduleId });
+            }
 
-//            var viewModel = new CreateViewModel
-//            {
-//                ScheduleDayNames = emptyDays.Select(x => new DayNameDropDownViewModel
-//                {
-//                    Name = x,
-//                }),
-//                ScheduleId = id,
-//            };
+            return this.View(input);
+        }
 
-//            return View(viewModel);
-//        }
+        // GET: Administration/ScheduleDays/Edit/5
+        public IActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return this.NotFound();
+            }
 
-//        // POST: Production/ScheduleDays/Create
-//        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-//        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-//        [HttpPost]
-//        [ValidateAntiForgeryToken]
-//        public async Task<IActionResult> Create(CreateViewModel input)
-//        {
-//            if (this.ModelState.IsValid)
-//            {
-//                var shiftDay = new ScheduleDay
-//                {
-//                    Name = input.Name,
-//                    WorkingMode = input.WorkingMode,
-//                    Begins = input.Begins.Length > 5 ? null : input.Begins,
-//                    CreatedFrom = "Dxcv Gdfgh Ydfgh",
-//                    Duration = input.Duration == 0 ? null : input.Duration,
-//                    IncludingRest = input.IncludingRest == 0 ? null : input.IncludingRest,
-//                    ScheduleId = input.ScheduleId,
-//                };
+            var scheduleDay = this.scheduleDaysServices.GetById<ScheduleDayEditViewModel>(id);
+            if (scheduleDay == null)
+            {
+                return this.NotFound();
+            }
 
-//                await this.scheduleDayRepository.AddAsync(shiftDay);
-//                await this.scheduleDayRepository.SaveChangesAsync();
-//                return this.RedirectToAction("Index", "ScheduleDays", new { id = shiftDay.ScheduleId });
-//            }
+            return this.View(scheduleDay);
+        }
 
-//            return View();
-//        }
+        // POST: Administration/ScheduleDays/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(ScheduleDayEditViewModel inputModel)
+        {
+            if (this.ModelState.IsValid)
+            {
+                var scheduleId = await this.scheduleDaysServices.UpdateAsync(inputModel, this.Creator());
+                return this.RedirectToAction("Index", "ScheduleDays", new { id = scheduleId });
+            }
 
-//        // GET: Production/ScheduleDays/Edit/5
-//        public async Task<IActionResult> Edit(int? id)
-//        {
-//            if (id == null)
-//            {
-//                return NotFound();
-//            }
+            return this.View(inputModel);
+        }
 
-//            var shiftDay = await _context.ScheduleDays.FindAsync(id);
-//            if (shiftDay == null)
-//            {
-//                return NotFound();
-//            }
-//            ViewData["ScheduleId"] = new SelectList(_context.Schedules, "Id", "Name", shiftDay.ScheduleId);
-//            return View(shiftDay);
-//        }
+        // GET: Administration/ScheduleDays/Delete/5
+        public IActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return this.NotFound();
+            }
 
-//        // POST: Production/ScheduleDays/Edit/5
-//        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-//        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-//        [HttpPost]
-//        [ValidateAntiForgeryToken]
-//        public async Task<IActionResult> Edit(int id, [Bind("WorkingMode,Begins,Duration,IncludingRest,ScheduleId,IsDeleted,DeletedOn,DeletedFrom,Id,CreatedOn,ModifiedOn,CreatedFrom,ModifiedFrom")] ScheduleDay shiftDay)
-//        {
-//            if (id != shiftDay.Id)
-//            {
-//                return NotFound();
-//            }
+            var scheduleDay = this.scheduleDaysServices.GetById<ScheduleDayDeleteViewModel>(id);
 
-//            if (ModelState.IsValid)
-//            {
-//                try
-//                {
-//                    _context.Update(shiftDay);
-//                    await _context.SaveChangesAsync();
-//                }
-//                catch (DbUpdateConcurrencyException)
-//                {
-//                    if (!ShiftDayExists(shiftDay.Id))
-//                    {
-//                        return NotFound();
-//                    }
-//                    else
-//                    {
-//                        throw;
-//                    }
-//                }
+            if (scheduleDay == null)
+            {
+                return this.NotFound();
+            }
 
-//                return this.RedirectToAction("Index", "Schedules");
-//            }
+            this.TempData["ScheduleId"] = scheduleDay.ScheduleId;
 
-//            ViewData["ScheduleId"] = new SelectList(_context.Schedules, "Id", "Name", shiftDay.ScheduleId);
-//            return View(shiftDay);
-//        }
+            return this.View(scheduleDay);
+        }
 
-//        // GET: Production/ScheduleDays/Delete/5
-//        public async Task<IActionResult> Delete(int? id)
-//        {
-//            if (id == null)
-//            {
-//                return NotFound();
-//            }
+        // POST: Administration/ScheduleDays/Delete/5
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            await this.scheduleDaysServices.Delete(id, this.Creator());
 
-//            var shiftDay = await _context.ScheduleDays
-//                .Include(s => s.Schedule)
-//                .FirstOrDefaultAsync(m => m.Id == id);
-//            if (shiftDay == null)
-//            {
-//                return NotFound();
-//            }
+            var scheduleId = this.TempData["ScheduleId"];
 
-//            return View(shiftDay);
-//        }
+            return this.RedirectToAction("Index", "ScheduleDays", new { id = scheduleId });
+        }
 
-//        // POST: Production/ScheduleDays/Delete/5
-//        [HttpPost]
-//        [ActionName("Delete")]
-//        [ValidateAntiForgeryToken]
-//        public async Task<IActionResult> DeleteConfirmed(int id)
-//        {
-//            var shiftDay = await _context.ScheduleDays.FindAsync(id);
-//            _context.ScheduleDays.Remove(shiftDay);
-//            await _context.SaveChangesAsync();
-//            return this.RedirectToAction("Index", "Schedules");
-//        }
+        private bool ScheduleExists(int id)
+        {
+            return this.schedulesService.AnyById(id);
+        }
 
-//        private bool ShiftDayExists(int id)
-//        {
-//            return _context.ScheduleDays.Any(e => e.Id == id);
-//        }
-//    }
-//}
+        private string Creator()
+        {
+            return this.userManager.GetUserAsync(this.User).Result.FullName;
+        }
+    }
+}
