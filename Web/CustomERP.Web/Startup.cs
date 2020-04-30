@@ -1,5 +1,6 @@
 ﻿namespace CustomERP.Web
 {
+    using System;
     using System.Reflection;
 
     using CustomERP.Data;
@@ -12,7 +13,6 @@
     using CustomERP.Services.Mapping;
     using CustomERP.Services.Messaging;
     using CustomERP.Web.ViewModels;
-
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
@@ -57,7 +57,7 @@
             services.AddScoped<IDbQueryRunner, DbQueryRunner>();
 
             // Application services
-            services.AddTransient<IEmailSender, NullMessageSender>();
+            services.AddTransient<IEmailSender>(x => new SendGridEmailSender ( Environment.GetEnvironmentVariable("SendGridApiKey")));
             services.AddTransient<ISettingsService, SettingsService>();
             services.AddTransient<IApplicationUserService, ApplicationUserService>();
             services.AddTransient<ICompaniesService, CompaniesService>();

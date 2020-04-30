@@ -25,11 +25,7 @@ body {
     position: relative;
 }
 
-.qwer {
-    min-height: 100%;
-}
-
-footer {
+.footer {
     position: absolute;
     bottom: 0;
     width: 100%;
